@@ -1,41 +1,49 @@
 int solarPanInt = 1;
 int appWidth, appHeight;
-int[] solarMoveX = new int[solarPanInt], ySolarMoveY = new int[solarPanInt];
+int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
+int wireWidth = 5;
 
 float[] xSolarPan = new float[solarPanInt], ySolarPan = new float[solarPanInt], widthSolarPan = new float[solarPanInt], heightSolarPan = new float[solarPanInt];
 float[] xSolarPanVDD = new float[solarPanInt], ySolarPanVDD = new float[solarPanInt], widthSolarPanVDD = new float[solarPanInt], heightSolarPanVDD = new float[solarPanInt];
 float[] xSolarPanVSS = new float[solarPanInt], ySolarPanVSS = new float[solarPanInt], widhtSolarPanVSS = new float[solarPanInt], heightSolarPanVSS = new float[solarPanInt];
+
+PImage solarPan;
+String image = "../image/";
+
 
 void setup(){
   appWidth = width;
   appHeight = height;
   
   size(500, 500);  
+  
+  xSolarPan[0] = appWidth*0+solarMoveX[0];
+  ySolarPan[0] = appHeight*0+solarMoveY[0];
+  widthSolarPan[0] = 136;
+  heightSolarPan[0] = 225;
+  solarPan = loadImage(image+"download.jpeg");
+
+  xSolarPanVDD[0] = widthSolarPan[0]/2+wireWidth+solarMoveX[0];
+  ySolarPanVDD[0] = heightSolarPan[0]+solarMoveY[0];
+  widthSolarPanVDD[0] = wireWidth;
+  heightSolarPanVDD[0] = solarMoveY[0]+20;
+
+  xSolarPanVSS[0] = widthSolarPan[0]/2-wireWidth*2+solarMoveX[0];
+  ySolarPanVSS[0] = heightSolarPan[0]+solarMoveY[0];
+  widhtSolarPanVSS[0] = wireWidth;
+  heightSolarPanVSS[0] = solarMoveY[0]+20;
 }
 
 void draw(){
-  for(int i = 0; i < solarPenInt;){
-    xSolarPan[i] = appWidth*0+solarMoveX[i];
-    ySolarPan[i] = appHeight*0+solarMoveY[i];
-    widthSolarPan[i] = 136;
-    heightSolarPan[i] = 225;
-    solarPan = loadImage(../download.jpeg);
-
-    xSolarPanVDD[i] = widthSolarPan[i]/2-20+solarMoveX[i];
-    ySolarPanVDD[i] = heightSolarPan[i]+solarMoveY[i];
-    widthSolarPanVDD[i] = widthSolarPan[i]/2-20+solarMoveX[i];
-    heightSolarPanVDD[i] = heightSolarPan[i]+solarMoveY[i]+10;
-
-    xSolarPanVSS[i] = widthSolarPan[i]/2+20+solarMoveX[i];
-    ySolarPanVSS[i] = heightSolarPan[i]+solarMoveY[i];
-    widhtSolarPanVSS[i] = widthSolarPan[i]/2+20+solarMoveX[i];
-    heightSolarPanVSS[i] = heightSolarPan[i]+solarMoveY[i]+10;
-
-    i++;
-  }
-
+  noStroke();
+  noFill();
+  solarPan();
 }
 
-void keyPressed(){}
+void keyPressed(){
+  
+}
 
-void mousePressed(){}
+void mousePressed(){
+  
+}
