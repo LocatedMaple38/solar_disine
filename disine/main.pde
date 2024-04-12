@@ -1,6 +1,12 @@
 int wireWidth = 5;
 int appWidth, appHeight;
 
+float xDropDown, yDropDown, widthDropDown, heightDropDown;
+float xAddBatt, yAddBatt, widthAddBatt, heightAddBatt;
+float xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan;
+float xAddInveter, yAddInverter, widthAddIn
+boolean dropDown = false;
+
 int solarPanInt = 1;
 int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
 float[] xSolarPan = new float[solarPanInt], ySolarPan = new float[solarPanInt], widthSolarPan = new float[solarPanInt], heightSolarPan = new float[solarPanInt];
@@ -18,88 +24,49 @@ int[] inverterMoveX = new int[inverterInt], inverterMoveY = new int[inverterInt]
 float[] xInverter = new float[inverterInt], yInverter = new float[inverterInt], widthInverter = new float[inverterInt], heightInverter = new float[inverterInt];
 float[] xInverterVDD = new float[inverterInt], yInverterVDD = new float[inverterInt], widthInverterVDD = new float[inverterInt], heightInverterVDD = new float[inverterInt];
 float[] xInverterVSS = new float[inverterInt], yInverterVSS = new float[inverterInt], widthInverterVSS = new float[inverterInt], heightInverterVSS = new float[inverterInt];
-float[] xInverterLine = new float[inverterInt], yInverterLine = new float[inverterInt], widthInverterLine = new float[inverterInt], heightInverterLine = new float[inverterInt];
+float[] xInverterLine1 = new float[inverterInt], yInverterLine1 = new float[inverterInt], widthInverterLine1 = new float[inverterInt], heightInverterLine1 = new float[inverterInt];
+float[] xInverterLine2 = new float[inverterInt], yInverterLine2 = new float[inverterInt], widthInverterLine2 = new float[inverterInt], heightInverterLine2 = new float[inverterInt];
 float[] xInverterNeutral = new float[inverterInt], yInverterNeutral = new float[inverterInt], widthInverterNeutral = new float[inverterInt], heightInverterNeutral = new float[inverterInt];
 float[] xInverterGround = new float[inverterInt], yInverterGround = new float[inverterInt], widthInverterGround = new float[inverterInt], heightInverterGround = new float[inverterInt];
+
+int wireInt = 1;
+float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new float[wireInt], heightWire = new float[wireInt];
+
+int mousePressed1 = 1;
+int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1];
 
 PImage solarPan;
 String image = "../image/";
 
-boolean[] line1 = new boolean[inverterInt];
-
 void setup(){
-  line1[0] = false;
   
   appWidth = width;
   appHeight = height;
   
   size(500, 500);  
   
-  
 }
 
 void draw(){
-  xSolarPan[0] = appWidth*0+solarMoveX[0];
-  ySolarPan[0] = appHeight*0+solarMoveY[0];
-  widthSolarPan[0] = 133;
-  heightSolarPan[0] = 225;
-  solarPan = loadImage(image+"download.jpeg");
-
-  xSolarPanVDD[0] = widthSolarPan[0]/2+wireWidth+solarMoveX[0];
-  ySolarPanVDD[0] = heightSolarPan[0]+solarMoveY[0];
-  widthSolarPanVDD[0] = wireWidth;
-  heightSolarPanVDD[0] = 20;
-
-  xSolarPanVSS[0] = widthSolarPan[0]/2-wireWidth*2+solarMoveX[0];
-  ySolarPanVSS[0] = heightSolarPan[0]+solarMoveY[0];
-  widhtSolarPanVSS[0] = wireWidth;
-  heightSolarPanVSS[0] = 20;
   
-  xBatt[0] = appWidth*0+battMoveX[0];
-  yBatt[0] = appHeight*0+battMoveY[0]+20;
-  widthBatt[0] = 100;
-  heightBatt[0] = 50;
+  solarPanSetup();
+  battSetup();
+  inveterSetup();
+  wireSetup();
+  dropDownSetup();
   
-  xBattVDD[0] = xBatt[0];
-  yBattVDD[0] = 0;
-  widthBattVDD[0] = 20;
-  heightBattVDD[0] = 20;
-  
-  xBattVSS[0] = xBatt[0]+80;
-  yBattVSS[0] = yBatt[0]-20;
-  widthBattVSS[0] = 20;
-  heightBattVSS[0] = 20;
-  
-  xInverter[0] = appWidth*0+inverterMoveX[0];
-  yInverter[0] = appHeight*0+inverterMoveY[0];
-  widthInverter[0] = 100;
-  heightInverter[0] = 200;
-  
-  xInverterVDD[0] = xInverter[0]+60;
-  yInverterVDD[0] = yInverter[0]+heightInverter[0];
-  widthInverterVDD[0] = wireWidth;
-  heightInverterVDD[0] = 20;
-  
-  xInverterVSS[0] = xInverter[0]+80;
-  yInverterVSS[0] = yInverter[0]+heightInverter[0];
-  widthInverterVSS[0] = wireWidth;
-  heightInverterVSS[0] = 20;
-  
-  xInverterLine[0] = 
-  yInverterLine[0] = 
-  widthInverterLine[0] = 
-  heightInverterLine[0] = 
-  
-  xInverterNeutral[0] = 
-  yInverterNeutral[0] = 
-  widthInverterNeutral[0] = 
-  heightInverterNeutral[0] = 
-  
-  xInverterGround[0] = 
-  yInverterGround[0] = 
-  widthInverterGround[0] = 
-  heightInverterGround[0] = 
-
+  if(dropDown == false){
+    xDropDown = appWidth*1/2;
+    yDropDown = appHeight*0;
+    widthDropDown = 30;
+    heightDropDown = 10;
+  }else{
+    xDropDown = appWidth*1/2;
+    yDropDown = appHeight*1/20;
+    widthDropDown = 30;
+    heightDropDown = 10;
+    
+  }
   
   solarMoveX[0] = 300;
   solarMoveY[0] = 100;
@@ -115,6 +82,7 @@ void draw(){
   solarPan();
   batt();
   inverter();
+  dropDown();
 }
 
 void keyPressed(){
@@ -122,5 +90,11 @@ void keyPressed(){
 }
 
 void mousePressed(){
-  
+  if(mouseX>xDropDown && mouseX<xDropDown+widthDropDown && mouseY>yDropDown && mouseY<yDropDown+heightDropDown){
+    if(dropDown == true){
+      dropDown = false;
+    }else{
+      dropDown = true;
+    }
+  }
 }
