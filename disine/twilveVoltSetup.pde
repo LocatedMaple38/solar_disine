@@ -38,4 +38,9 @@ void twillveVBattSetup(){
   y12V8 = 220;
   width12V8 = 700;
   height12V8 = 20;
+  
+  x12V9 = 125;
+  y12V9 = 240;
+  width12V9 = 700;
+  height12V9 = 20;
 }
