@@ -26,13 +26,17 @@ float x12V5, y12V5, width12V5, height12V5;
 float x12V6, y12V6, width12V6, height12V6;
 float x12V7, y12V7, width12V7, height12V7;
 float x12V8, y12V8, width12V8, height12V8;
+float x12V9, y12V9, width12V9, height12V9;
+float x12V10, y12V10, width12V10, height12V10;
 
 float x24V1, y24V1, widht24V1, height24V1;
+float x24V2, y24V2, widht24V2, height24V2;
 
 float x48V1, y48V1, width48V1, height48V1;
 float x48V2, y48V2, width48V2, height48V2;
 float x48V3, y48V3, width48V3, height48V3;
 float x48V4, y48V4, width48V4, height48V4;
+float x48V5, y48V5, width48V5, height48V5;
 
 float xDropDown, yDropDown, widthDropDown, heightDropDown;
 float xAddBatt, yAddBatt, widthAddBatt, heightAddBatt;
@@ -75,10 +79,20 @@ int mousePressed1 = 1;
 int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX2 = new int[mousePressed1], mouseY2 = new int[mousePressed1];
 
 PImage solarPan;
+PImage battImage1;
+PImage battImage2;
+PImage battImage3;
+PImage battImage4;
+PImage battImage5;
+PImage battImage6;
 String image = "../image/";
+String solar = image+"solar/";
+String battrey = image+"battrey/";
+String invrt = image+"inverter/";
 
 void settings() {
   fullScreen(P2D, display);
+  //size(500, 500);
 }
 
 
@@ -97,7 +111,7 @@ void draw(){
   
   solarMoveX[0] = 600;
   solarMoveY[0] = 70;
-  battMoveX[0] = 600;
+  battMoveX[0] = 0;
   battMoveY[0] = 0;
   inverterMoveX[0] = 600;
   inverterMoveY[0] = 315;
@@ -185,9 +199,6 @@ void keyPressed() {
       FortyEaghtV = false;
     }
   }
-  
-  println(dropDown1);
-  
 }
 
 void mousePressed(){
@@ -241,6 +252,4 @@ void mousePressed(){
       FortyEaghtV = false;
     }
   }
-  
-  println("X "+mouseX, "Y "+mouseY);
 }
