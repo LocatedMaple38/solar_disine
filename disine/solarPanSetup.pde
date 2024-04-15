@@ -3,7 +3,7 @@ void solarPanSetup(){
   ySolarPan[0] = appHeight*0+solarMoveY[0];
   widthSolarPan[0] = 133;
   heightSolarPan[0] = 225;
-  solarPan = loadImage(image+"download.jpeg");
+  solarPan = loadImage(solar+"550watt.jpeg");
 
   xSolarPanVDD[0] = widthSolarPan[0]/2+wireWidth+solarMoveX[0];
   ySolarPanVDD[0] = heightSolarPan[0]+solarMoveY[0];
