@@ -18,4 +18,9 @@ void FortyEightVoltSetup(){
   y48V4 = 100;
   width48V4 = 700;
   height48V4 = 20;
+  
+  x48V5 = 125;
+  y48V5 = 120;
+  width48V5 = 700;
+  height48V5 = 20;
 }
