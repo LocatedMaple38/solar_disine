@@ -13,13 +13,13 @@ void voltSeletDraw(){
   noFill();
   
   if(batt == true ){
-    if(twelveV == true){
+    if(twelveVBatt == true){
       twillveVBattDraw();
     }
-    if(FortyEaghtV == true){
+    if(FortyEaghtVBatt == true){
       FortyEightVoltDraw();
     }
-    if(TwentyFourV == true){
+    if(TwentyFourVBatt == true){
       TwentyFourDraw();
     }
   }
