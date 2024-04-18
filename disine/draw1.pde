@@ -16,11 +16,15 @@ void draw1(){
   text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
   noFill();
   
-  if(batt == true && dropDown1 == true && solarPanBool == false){
-    voltSeletDraw();
+  if(dropDown1 == true && battBool == true && solarPanBool == false && inverterBool == false){
+    voltSelectBattDraw();
   }else{}
   
-  if(batt == false && dropDown1 == true && solarPanBool == true){
+  if(dropDown1 == true && battBool == false && solarPanBool == true && inverterBool == false){
     solarPanItemDraw();
+  }else{}
+  
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == true){
+    inverterSelectDraw();
   }else{}
 }
