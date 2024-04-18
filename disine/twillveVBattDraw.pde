@@ -9,6 +9,14 @@ void twillveVBattDraw(){
   rect(x12V7, y12V7, width12V7, height12V7);
   rect(x12V8, y12V8, width12V8, height12V8);
   rect(x12V9, y12V9, width12V9, height12V9);
+  rect(x12V10, y12V10, width12V10, height12V10);
+  rect(x12V11, y12V11, width12V11, height12V11);
+  rect(x12V12, y12V12, width12V12, height12V12);
+  rect(x12V13, y12V13, width12V13, height12V13);
+  rect(x12V14, y12V14, width12V14, height12V14);
+  rect(x12V15, y12V15, width12V15, height12V15);
+  rect(x12V16, y12V16, width12V16, height12V16);
+  rect(x12V17, y12V17, width12V17, height12V17);
   
   fill(0);
   textAlign(LEFT, TOP);
@@ -22,6 +30,13 @@ void twillveVBattDraw(){
   text("SOK 12V 206Ah LiFePO4 Solar Battery", x12V7, y12V7, width12V7, height12V7);
   text("Epoch Battery 12V/460Ah LiFePO4 – Group 8D Size, IP67, Heated, Bluetooth & Victron Comms", x12V8, y12V8, width12V8, height12V8);
   text("EG4-LL 12V 400Ah (V2) Server Rack Battery", x12V9, y12V9, width12V9, height12V9);
-  
+  text("Victron 12V 330Ah Smart LiFePO4 Battery – External BMS", x12V10, y12V10, width12V10, height12V10);
+  text("Victron 12V 200Ah Smart LiFePO4 Solar Battery – External BMS", x12V11, y12V11, width12V11, height12V11);
+  text("Battle Born 12V 50Ah LiFePO4 Battery – Group 24", x12V12, y12V12, width12V12, height12V12);
+  text("Battle Born 12V 75Ah LiFePO4 Battery – Group 24", x12V13, y12V13, width12V13, height12V13);
+  text("Battle Born 12V 100Ah LiFePO4 Battery – Group 27", x12V14, y12V14, width12V14, height12V14);
+  text("Epoch 12V 120Ah – Group 27 – Cranking & Deep Cycle Lithium Battery (Dual Purpose)", x12V15, y12V15, width12V15, height12V15);
+  text("Battle Born 12V 270Ah 8D LiFePO4 Battery", x12V16, y12V16, width12V16, height12V16);
+  text("Battle Born 12V 270Ah GC3 LiFePO4 Battery – Universal Mount", x12V17, y12V17, width12V17, height12V17);
   noFill();
 }
