@@ -8,10 +8,12 @@ boolean L1 = false;
 boolean L2 = false;
 boolean ground = false;
 boolean com = false;
-boolean twelveV = false;
-boolean TwentyFourV = false;
-boolean FortyEaghtV = false;
+boolean twelveVBatt = false;
+boolean TwentyFourVBatt = false;
+boolean FortyEaghtVBatt = false;
 boolean arowSlect = false;
+boolean solarPanBool = false;
+boolean InverterBool = false;
 
 float x48V, y48V, width48V, height48V;
 float x24V, y24V, width24V, height24V;
@@ -28,18 +30,43 @@ float x12V7, y12V7, width12V7, height12V7;
 float x12V8, y12V8, width12V8, height12V8;
 float x12V9, y12V9, width12V9, height12V9;
 float x12V10, y12V10, width12V10, height12V10;
+float x12V11, y12V11, width12V11, height12V11;
+float x12V12, y12V12, width12V12, height12V12;
+float x12V13, y12V13, width12V13, height12V13;
+float x12V14, y12V14, width12V14, height12V14;
+float x12V15, y12V15, width12V15, height12V15;
+float x12V16, y12V16, width12V16, height12V16;
+float x12V17, y12V17, width12V17, height12V17;
 
 float x24V1, y24V1, widht24V1, height24V1;
 float x24V2, y24V2, widht24V2, height24V2;
+float x24V3, y24V3, widht24V3, height24V3;
+float x24V4, y24V4, widht24V4, height24V4;
+float x24V5, y24V5, widht24V5, height24V5;
 
 float x48V1, y48V1, width48V1, height48V1;
 float x48V2, y48V2, width48V2, height48V2;
 float x48V3, y48V3, width48V3, height48V3;
 float x48V4, y48V4, width48V4, height48V4;
 float x48V5, y48V5, width48V5, height48V5;
+float x48V6, y48V6, width48V6, height48V6;
+float x48V7, y48V7, width48V7, height48V7;
+float x48V8, y48V8, width48V8, height48V8;
+float x48V9, y48V9, width48V9, height48V9;
+float x48V10, y48V10, width48V10, height48V10;
+
+float xSolarPan1, ySolarPan1, widhtSolarPan1, heightSolarPan1;
+float xSolarPan2, ySolarPan2, widhtSolarPan2, heightSolarPan2;
+float xSolarPan3, ySolarPan3, widhtSolarPan3, heightSolarPan3;
+float xSolarPan4, ySolarPan4, widhtSolarPan4, heightSolarPan4;
+float xSolarPan5, ySolarPan5, widhtSolarPan5, heightSolarPan5;
+float xSolarPan6, ySolarPan6, widhtSolarPan6, heightSolarPan6;
+float xSolarPan7, ySolarPan7, widhtSolarPan7, heightSolarPan7;
+float xSolarPan8, ySolarPan8, widhtSolarPan8, heightSolarPan8;
+float xSolarPan9, ySolarPan9, widhtSolarPan9, heightSolarPan9;
 
 float xDropDown, yDropDown, widthDropDown, heightDropDown;
-float xAddBatt, yAddBatt, widthAddBatt, heightAddBatt;
+float xBattteries, yBattteries, widthBattteries, heightBattteries;
 float xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan;
 float xAddInveter, yAddInverter, widthAddInverter, heightAddIverter;
 float xAddWire, yAddWire, widthAddWire, heightAddWire;
@@ -133,6 +160,7 @@ void draw(){
   batt();
   inverter();
   solarPan();
+  solarPanItemSetup();
   
   if(dropDown1 == true){
     draw1();
@@ -154,6 +182,7 @@ void keyPressed() {
     if(dropDown1 == true){
       dropDown1 = false;
       batt = false;
+      solarPanBool = false;
     }else{
       dropDown1 = true;
     }
@@ -164,41 +193,52 @@ void keyPressed() {
       batt = false;
     }else{
       batt = true;
-      twelveV = false;
-      FortyEaghtV = false;
-      TwentyFourV = false;
+      twelveVBatt = false;
+      FortyEaghtVBatt = false;
+      TwentyFourVBatt = false;
+      solarPanBool = false;
     }
   }
   
   if(batt == true && key == '1'){
-    if(twelveV == true){
-      twelveV = false;
+    if(twelveVBatt == true){
+      twelveVBatt = false;
     }else{
-      twelveV = true;
-      FortyEaghtV = false;
-      TwentyFourV = false;
+      twelveVBatt = true;
+      FortyEaghtVBatt = false;
+      TwentyFourVBatt = false;
     }
   }
     
   if(batt == true && key == '4'){
-    if(FortyEaghtV == true){
-      FortyEaghtV = false;
+    if(FortyEaghtVBatt == true){
+      FortyEaghtVBatt = false;
     }else{
-      twelveV = false;
-      FortyEaghtV = true;
-      TwentyFourV = false;
+      twelveVBatt = false;
+      FortyEaghtVBatt = true;
+      TwentyFourVBatt = false;
     }
   }
   
   if(batt == true && key == '2'){
-    if(TwentyFourV == true){
-      TwentyFourV = false;
+    if(TwentyFourVBatt == true){
+      TwentyFourVBatt = false;
     }else{
-      TwentyFourV = true;
-      twelveV = false;
-      FortyEaghtV = false;
+      TwentyFourVBatt = true;
+      twelveVBatt = false;
+      FortyEaghtVBatt = false;
     }
   }
+  
+  if(dropDown1 == true && key == 's' || key == 'S'){
+    if(solarPanBool == true){
+      solarPanBool = false;
+    }else{
+      solarPanBool = true;
+      batt = false;
+    }
+  }
+  
 }
 
 void mousePressed(){
@@ -211,12 +251,12 @@ void mousePressed(){
     }
   }
   
-  if(dropDown1 == true && mouseX>xAddBatt && mouseX<xAddBatt+widthAddBatt && mouseY>yAddBatt && mouseY<yAddBatt+heightAddBatt){
+  if(dropDown1 == true && mouseX>xBattteries && mouseX<xBattteries+widthBattteries && mouseY>yBattteries && mouseY<yBattteries+heightBattteries){
     if(batt == true){
       batt = false;
-      twelveV = false;
-      FortyEaghtV = false;
-      TwentyFourV = false;
+      twelveVBatt = false;
+      FortyEaghtVBatt = false;
+      TwentyFourVBatt = false;
     }else{
       batt = true;
     }
@@ -224,32 +264,42 @@ void mousePressed(){
   }
   
   if(batt == true && mouseX>x12V & mouseX<x12V+width12V && mouseY>y12V && mouseY<y12V+height12V){
-    if(twelveV == true){
-      twelveV = false;
+    if(twelveVBatt == true){
+      twelveVBatt = false;
     }else{
-      twelveV = true;
-      FortyEaghtV = false;
-      TwentyFourV = false;
+      twelveVBatt = true;
+      FortyEaghtVBatt = false;
+      TwentyFourVBatt = false;
     }
   }
     
   if(batt == true && mouseX>x48V & mouseX<x48V+width48V && mouseY>y48V && mouseY<y48V+height48V){
-    if(FortyEaghtV == true){
-      FortyEaghtV = false;
+    if(FortyEaghtVBatt == true){
+      FortyEaghtVBatt = false;
     }else{
-      twelveV = false;
-      FortyEaghtV = true;
-      TwentyFourV = false;
+      twelveVBatt = false;
+      FortyEaghtVBatt = true;
+      TwentyFourVBatt = false;
     }
   }
   
   if(batt == true && mouseX>x24V & mouseX<x24V+width24V && mouseY>y24V && mouseY<y24V+height24V){
-    if(TwentyFourV == true){
-      TwentyFourV = false;
+    if(TwentyFourVBatt == true){
+      TwentyFourVBatt = false;
     }else{
-      TwentyFourV = true;
-      twelveV = false;
-      FortyEaghtV = false;
+      TwentyFourVBatt = true;
+      twelveVBatt = false;
+      FortyEaghtVBatt = false;
     }
   }
+  
+  if(dropDown1 == true && mouseX>xAddSolarPan && mouseX<xAddSolarPan+widthAddSolarPan && mouseY>yAddSolarPan && mouseY<yAddSolarPan+heightAddSolarPan){
+    if(solarPanBool == true){
+      solarPanBool = false;
+    }else{
+      solarPanBool = true;
+    }
+  }
+  
+  println(mouseX, mouseY);
 }
