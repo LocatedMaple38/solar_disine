@@ -5,10 +5,10 @@ void drawSetup(){
   widhtSetDisplay = 75;
   heightDisplay = 20;
   
-  xAddBatt = appWidth*0;
-  yAddBatt = 40;
-  widthAddBatt = 75;
-  heightAddBatt = 20;
+  xBattteries = appWidth*0;
+  yBattteries = 40;
+  widthBattteries = 75;
+  heightBattteries = 20;
   
   xAddSolarPan = appWidth*0;
   yAddSolarPan = 60;
