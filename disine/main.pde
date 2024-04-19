@@ -1,6 +1,6 @@
 int wireWidth = 5;
 int appWidth, appHeight;
-int display = 1;
+int display;
 int red = 0, green = 0, blue = 0;
 
 boolean VDD = true;
@@ -89,7 +89,6 @@ float xBattteries, yBattteries, widthBattteries, heightBattteries;
 float xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan;
 float xAddInveter, yAddInverter, widthAddInverter, heightAddIverter;
 float xAddWire, yAddWire, widthAddWire, heightAddWire;
-float xSetDisplay, ySetDisplay, widhtSetDisplay, heightDisplay;
 float xCCItem, yCCItem, widthCCItem, heightCCItem;
 boolean dropDown1 = false;
 
@@ -135,14 +134,10 @@ String image = "../image/";
 String solar = image+"solar/";
 String battrey = image+"battrey/";
 String invrt = image+"inverter/";
-
-void settings() {
-  fullScreen(P2D, display);
-  //size(500, 500);
-}
-
+String path = "../display.txt";
 
 void setup(){
+  
   appWidth = width;
   appHeight = height;
   
@@ -151,6 +146,14 @@ void setup(){
   widthDropDown =50;
   heightDropDown = 20;
   
+}
+
+void settings(){
+  
+  String[] lines = loadStrings(path);
+  display = Integer.parseInt(lines[0]);
+  fullScreen(P2D, display);
+  //size(500, 500);
 }
 
 void draw(){
@@ -206,6 +209,7 @@ void keyPressed() {
     if(dropDown1 == true){
       dropDown1 = false;
       battBool = false;
+      inverterBool = false;
       twelveVBatt = false;
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
@@ -224,6 +228,7 @@ void keyPressed() {
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
       solarPanBool = false;
+      inverterBool = false;
     }
   }
   
