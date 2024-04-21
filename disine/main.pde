@@ -123,10 +123,21 @@ boolean combinerBoxes = false;
 float xCNC1, yCNC1, widthCNC1, heightCNC1;
 float xCNC2, yCNC2, widthCNC2, heightCNC2;
 float xCNC3, yCNC3, widthCNC3, heightCNC3;
+float xCNC4, yCNC4, widthCNC4, heightCNC4;
 boolean CNC = false;
 
+float xDCDCBB1, yDCDCBB1, widthDCDCBB1, heightDCDCBB1;
+float xDCDCBB2, yDCDCBB2, widthDCDCBB2, heightDCDCBB2;
+float xDCDCBB3, yDCDCBB3, widthDCDCBB3, heightDCDCBB3;
 boolean DCDCBB = false;
 
+float xESP1, yESP1, widthESP1, heightESP1;
+float xESP2, yESP2, widthESP2, heightESP2;
+float xESP3, yESP3, widthESP3, heightESP3;
+float xESP4, yESP4, widthESP4, heightESP4;
+float xESP5, yESP5, widthESP5, heightESP5;
+float xESP6, yESP6, widthESP6, heightESP6;
+float xESP7, yESP7, widthESP7, heightESP7;
 boolean ESP = false;
 
 float xDropDown, yDropDown, widthDropDown, heightDropDown;
@@ -229,6 +240,8 @@ void draw(){
   twillveVoltBattSetup();
   twillveVoltInverterSetup();
   voltSelectBattSetup();
+  DCDistributionBarsBlocksSetup();
+  ElectricalPanelsSubpanelsSetup();
   //wireSetup();
   
   noStroke();
@@ -248,14 +261,13 @@ void draw(){
   fill(#ffffff);
   rect(xDropDown, yDropDown, widthDropDown, heightDropDown);
   fill(0);
-  text("Draw", xDropDown, yDropDown, widthDropDown, heightDropDown);
+  text("Add", xDropDown, yDropDown, widthDropDown, heightDropDown);
   noFill();
-  
   
 }
 
-void keyPressed() {
-  if(key == 'd' || key == 'D'){
+void keyPressed(){
+  if(key == 'a' || key == 'A'){
     if(dropDown1 == true){
       dropDown1 = false;
       battBool = false;
@@ -390,6 +402,48 @@ void keyPressed() {
       inverterBool = false;
       DCDCBB = false;
       ESP = false;
+      CNC = false;
+    }
+  }
+  
+  if(dropDown1 == true && key == 'o' || key == 'O'){
+    if(CNC == true){
+      CNC = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = true;
+    }
+  }
+  
+  if(dropDown1 == true && key == 'd' || key == 'D'){
+    if(DCDCBB == true){
+      DCDCBB = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = true;
+      ESP = false;
+      CNC = false;
+    }
+  }
+  
+  if(dropDown1 == true && key == 'e' || key == 'E'){
+    if(ESP == true){
+      ESP = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = true;
       CNC = false;
     }
   }
