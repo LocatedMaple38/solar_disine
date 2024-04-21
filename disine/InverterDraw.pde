@@ -1,4 +1,4 @@
-void inverter(){
+void inverterDraw(){
   fill(#156fd3);
   rect(xInverter[0], yInverter[0], widthInverter[0], heightInverter[0]);
   fill(#ff0000);
