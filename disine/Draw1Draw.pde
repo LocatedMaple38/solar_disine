@@ -22,23 +22,32 @@ void draw1(){
   //text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
   noFill();
   
-  if(dropDown1 == true && battBool == true && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == false){
+  if(dropDown1 == true && battBool == true && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == false && DCDCBB == false && ESP == false){
     voltSelectBattDraw();
   }else{}
   
-  if(dropDown1 == true && battBool == false && solarPanBool == true && inverterBool == false && combinerBoxes == false && CNC == false){
+  if(dropDown1 == true && battBool == false && solarPanBool == true && inverterBool == false && combinerBoxes == false && CNC == false && DCDCBB == false && ESP == false){
     solarPanItemDraw();
   }else{}
   
-  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == true && combinerBoxes == false && CNC == false){
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == true && combinerBoxes == false && CNC == false && DCDCBB == false && ESP == false){
     inverterSelectDraw();
   }else{}
   
-  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == true && CNC == false){
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == true && CNC == false && DCDCBB == false && ESP == false){
     combinerBoxesDraw();
   }else{}
   
-  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == true){
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == true && DCDCBB == false && ESP == false){
     communicationNetwokeCablesDraw();
   }else{}
+  
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == false && DCDCBB == true && ESP == false){
+    DCDistributionBarsBlocksDraw();
+  }else{}
+  
+  if(dropDown1 == true && battBool == false && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == false && DCDCBB == false && ESP == true){
+    ElectricalPanelsSubpanelsDraw();
+  }else{}
+  
 }
