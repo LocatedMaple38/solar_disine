@@ -1,4 +1,4 @@
-void wire(){
+void wireDraw(){
   int i = 0;
   
   stroke(red, green, blue);
