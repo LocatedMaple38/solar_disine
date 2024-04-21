@@ -15,4 +15,9 @@ void communicationNetwokeCablesSetup(){
   widthCNC3 = 700;
   heightCNC3 = 20;
   
+  xCNC4 = 225;
+  yCNC4 = 160;
+  widthCNC4 = 700;
+  heightCNC4 = 20;
+  
 }
