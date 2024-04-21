@@ -1,4 +1,4 @@
-void batt(){
+void battDraw(){
   fill(#c8c8c8);
   rect(xBatt[0], yBatt[0], widthBatt[0], heightBatt[0]);
   fill(#ff0000);
