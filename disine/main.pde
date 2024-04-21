@@ -25,13 +25,46 @@ float xGridTie, yGridTie, widthGridTie, heightGridTie;
 boolean inverterBool = false;
 
 float x12VInverter1, y12VInverter1, width12VInverter1, height12VInverter1;
+float x12VInverter2, y12VInverter2, width12VInverter2, height12VInverter2;
+float x12VInverter3, y12VInverter3, width12VInverter3, height12VInverter3;
+float x12VInverter4, y12VInverter4, width12VInverter4, height12VInverter4;
+float x12VInverter5, y12VInverter5, width12VInverter5, height12VInverter5;
+float x12VInverter6, y12VInverter6, width12VInverter6, height12VInverter6;
+float x12VInverter7, y12VInverter7, width12VInverter7, height12VInverter7;
+float x12VInverter8, y12VInverter8, width12VInverter8, height12VInverter8;
+float x12VInverter9, y12VInverter9, width12VInverter9, height12VInverter9;
+float x12VInverter10, y12VInverter10, width12VInverter10, height12VInverter10;
+float x12VInverter11, y12VInverter11, width12VInverter11, height12VInverter11;
 
 float x24VInverter1, y24VInverter1, width24VInverter1, height24VInverter1;
+float x24VInverter2, y24VInverter2, width24VInverter2, height24VInverter2;
+float x24VInverter3, y24VInverter3, width24VInverter3, height24VInverter3;
+float x24VInverter4, y24VInverter4, width24VInverter4, height24VInverter4;
+float x24VInverter5, y24VInverter5, width24VInverter5, height24VInverter5;
 
 float x48VInverter1, y48VInverter1, width48VInverter1, height48VInverter1;
+float x48VInverter2, y48VInverter2, width48VInverter2, height48VInverter2;
+float x48VInverter3, y48VInverter3, width48VInverter3, height48VInverter3;
+float x48VInverter4, y48VInverter4, width48VInverter4, height48VInverter4;
+float x48VInverter5, y48VInverter5, width48VInverter5, height48VInverter5;
+float x48VInverter6, y48VInverter6, width48VInverter6, height48VInverter6;
+float x48VInverter7, y48VInverter7, width48VInverter7, height48VInverter7;
+float x48VInverter8, y48VInverter8, width48VInverter8, height48VInverter8;
+float x48VInverter9, y48VInverter9, width48VInverter9, height48VInverter9;
+float x48VInverter10, y48VInverter10, width48VInverter10, height48VInverter10;
+float x48VInverter11, y48VInverter11, width48VInverter11, height48VInverter11;
+float x48VInverter12, y48VInverter12, width48VInverter12, height48VInverter12;
+float x48VInverter13, y48VInverter13, width48VInverter13, height48VInverter13;
+float x48VInverter14, y48VInverter14, width48VInverter14, height48VInverter14;
+float x48VInverter15, y48VInverter15, width48VInverter15, height48VInverter15;
+float x48VInverter16, y48VInverter16, width48VInverter16, height48VInverter16;
+float x48VInverter17, y48VInverter17, width48VInverter17, height48VInverter17;
+float x48VInverter18, y48VInverter18, width48VInverter18, height48VInverter18;
+float x48VInverter19, y48VInverter19, width48VInverter19, height48VInverter19;
 
 float xGridTie1, yGridTie1, widthGridTie1, heightGridTie1;
 float xGridTie2, yGridTie2, widthGridTie2, heightGridTie2;
+float xGridTie3, yGridTie3, widthGridTie3, heightGridTie3;
 
 float x48VBatt, y48VBatt, width48VBatt, height48VBatt;
 float x24VBatt, y24VBatt, width24VBatt, height24VBatt;
@@ -84,12 +117,27 @@ float xSolarPan8, ySolarPan8, widhtSolarPan8, heightSolarPan8;
 float xSolarPan9, ySolarPan9, widhtSolarPan9, heightSolarPan9;
 boolean solarPanBool = false;
 
+float xCB1, yCB1, widthCB1, heightCV1;
+boolean combinerBoxes = false;
+
+float xCNC1, yCNC1, widthCNC1, heightCNC1;
+float xCNC2, yCNC2, widthCNC2, heightCNC2;
+float xCNC3, yCNC3, widthCNC3, heightCNC3;
+boolean CNC = false;
+
+boolean DCDCBB = false;
+
+boolean ESP = false;
+
 float xDropDown, yDropDown, widthDropDown, heightDropDown;
 float xBattteries, yBattteries, widthBattteries, heightBattteries;
 float xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan;
 float xAddInveter, yAddInverter, widthAddInverter, heightAddIverter;
 float xAddWire, yAddWire, widthAddWire, heightAddWire;
-float xCCItem, yCCItem, widthCCItem, heightCCItem;
+float xAddCB, yAddCB, widthAddCB, heightAddCB;
+float xAddCNC, yAddCNC, widthAddCNC, heightAddCNC;
+float xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB;
+float xAddESP, yAddESP, widthAddESP, heightAddESP;
 boolean dropDown1 = false;
 
 //Solar Panel
@@ -152,7 +200,7 @@ void settings(){
   
   String[] lines = loadStrings(path);
   display = Integer.parseInt(lines[0]);
-  fullScreen(P2D, display);
+  fullScreen(P3D, display);
   //size(500, 500);
 }
 
@@ -165,29 +213,31 @@ void draw(){
   inverterMoveX[0] = 600;
   inverterMoveY[0] = 315;
   
-  solarPanSetup();
   battSetup();
-  inveterSetup();
-  wireSetup();
+  combinerBoxesSetup();
+  communicationNetwokeCablesSetup();
   drawSetup();
-  voltSelectBattSetup();
-  twillveVBattSetup();
-  twillveVoltInverterSetup();
-  fortyEightVoltSetup();
+  fortyEightVoltBattSetup();
   fortyEightVoltInverterSetup();
-  twentyFourSetup();
-  twentyFourVoltInverterSetup();
-  solarPanItemSetup();
-  inverterSelectSetup();
   gridTieInverterSetup();
+  inverterSelectSetup();
+  inveterSetup();
+  solarPanItemSetup();
+  solarPanSetup();
+  twentyFourVoltBattSetup();
+  twentyFourVoltInverterSetup();
+  twillveVoltBattSetup();
+  twillveVoltInverterSetup();
+  voltSelectBattSetup();
+  //wireSetup();
   
   noStroke();
   fill(#a0a0a0);
   rect(0, 0, appWidth, appHeight);
   noFill();
-  batt();
-  inverter();
-  solarPan();
+  battDraw();
+  inverterDraw();
+  solarPanDraw();
   
   if(dropDown1 == true){
     draw1();
@@ -214,6 +264,7 @@ void keyPressed() {
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
       solarPanBool = false;
+      combinerBoxes = false;
     }else{
       dropDown1 = true;
     }
@@ -229,6 +280,7 @@ void keyPressed() {
       twentyFourVBatt = false;
       solarPanBool = false;
       inverterBool = false;
+      combinerBoxes = false;
     }
   }
   
@@ -269,6 +321,7 @@ void keyPressed() {
       solarPanBool = true;
       battBool = false;
       inverterBool = false;
+      combinerBoxes = false;
     }
   }
   
@@ -279,6 +332,7 @@ void keyPressed() {
       solarPanBool = false;
       battBool = false;
       inverterBool = true;
+      combinerBoxes = false;
     }
   }
   
@@ -326,6 +380,20 @@ void keyPressed() {
     }
   }
   
+  if(dropDown1 == true && key == 'c' || key == 'C'){
+    if(combinerBoxes == true){
+      combinerBoxes = false;
+    }else{
+      combinerBoxes = true;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
+    }
+  }
+  
 }
 
 void mousePressed(){
@@ -336,6 +404,10 @@ void mousePressed(){
       solarPanBool = false;
       battBool = false;
       inverterBool = false;
+      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }else{
       dropDown1 = true;
     }
@@ -351,6 +423,10 @@ void mousePressed(){
       twelveVBatt = false;
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
+      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
   }
   
@@ -364,6 +440,10 @@ void mousePressed(){
       twelveVBatt = false;
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
+      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
   }
   
@@ -377,8 +457,67 @@ void mousePressed(){
       solarPanBool = false;
       battBool = true;
       inverterBool = false;
+      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
-    
+  }
+  
+  if(dropDown1 == true && mouseX>xAddCB && mouseX<xAddCB+widthAddCB && mouseY>yAddCB && mouseY<yAddCB+heightAddCB){
+    if(combinerBoxes == true){
+      combinerBoxes = false;
+    }else{
+      combinerBoxes = true;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
+    }
+  }
+  
+  if(dropDown1 == true && mouseX>xAddCNC && mouseX<xAddCNC+widthAddCNC && mouseY>yAddCNC && mouseY<yAddCNC+heightAddCNC){
+    if(CNC == true){
+      CNC = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = true;
+    }
+  }
+  
+  if(dropDown1 == true && mouseX>xAddESP && mouseX<xAddESP+widthAddESP && mouseY>yAddESP && mouseY<yAddESP+heightAddESP){
+    if(ESP == true){
+      ESP = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = true;
+      CNC = false;
+    }
+  }
+  
+  if(dropDown1 == true && mouseX>xAddDCDCBB && mouseX<xAddDCDCBB+widthAddDCDCBB && mouseY>yAddDCDCBB && mouseY<yAddDCDCBB+heightAddDCDCBB){
+    if(DCDCBB == true){
+      DCDCBB = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = true;
+      ESP = false;
+      CNC = false;
+    }
   }
   
   if(battBool == true && mouseX>x12VBatt & mouseX<x12VBatt+width12VBatt && mouseY>y12VBatt && mouseY<y12VBatt+height12VBatt){
@@ -458,5 +597,6 @@ void mousePressed(){
     }
   }
   
+  println(CNC);
   println(mouseX, mouseY);
 }
