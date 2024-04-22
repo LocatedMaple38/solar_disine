@@ -117,7 +117,7 @@ float xSolarPan8, ySolarPan8, widhtSolarPan8, heightSolarPan8;
 float xSolarPan9, ySolarPan9, widhtSolarPan9, heightSolarPan9;
 boolean solarPanBool = false;
 
-float xCB1, yCB1, widthCB1, heightCV1;
+float xCB1, yCB1, widthCB1, heightCB1;
 boolean combinerBoxes = false;
 
 float xCNC1, yCNC1, widthCNC1, heightCNC1;
@@ -254,6 +254,9 @@ void draw(){
   rect(xDropDown, yDropDown, widthDropDown, heightDropDown);
   fill(0);
   text("Add", xDropDown, yDropDown, widthDropDown, heightDropDown);
+  stroke(0);
+  fill(0);
+  line(0, 13, 0+textWidth("A"), 13);
   noFill();
   
 }
