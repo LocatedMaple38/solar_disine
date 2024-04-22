@@ -1,5 +1,5 @@
 void solarPanDraw(){
-  image(solarPan, xSolarPan[0], ySolarPan[0], widthSolarPan[0], heightSolarPan[0]);
+  rect(xSolarPan[0], ySolarPan[0], widthSolarPan[0], heightSolarPan[0]);
   fill(#ff0000);
   rect(xSolarPanVDD[0], ySolarPanVDD[0], widthSolarPanVDD[0], heightSolarPanVDD[0]);
   fill(0);
