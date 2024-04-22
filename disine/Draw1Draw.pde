@@ -20,6 +20,16 @@ void draw1(){
   text("DC Distribution Bars / Blocks", xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
   text("Electrical Panels & Subpanels", xAddESP, yAddESP, widthAddESP, heightAddESP);
   //text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
+  stroke(0);
+  fill(0);
+  line(0, 33, 0+textWidth("B"), 33);
+  line(0, 53, 0+textWidth("S"), 53);
+  line(0, 73, 0+textWidth("I"), 73);
+  line(0, 93, 0+textWidth("C"), 93);
+  line(textWidth("C"), 113, textWidth("C")+textWidth("o"), 113);
+  line(0, 133, 0+textWidth("D"), 133);
+  line(0, 153, 0+textWidth("E"), 153);
+  noStroke();
   noFill();
   
   if(dropDown1 == true && battBool == true && solarPanBool == false && inverterBool == false && combinerBoxes == false && CNC == false && DCDCBB == false && ESP == false){
