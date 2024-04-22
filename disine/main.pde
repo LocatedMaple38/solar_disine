@@ -1,7 +1,6 @@
 int wireWidth = 5;
 int appWidth, appHeight;
 int display;
-int red = 0, green = 0, blue = 0;
 
 boolean VDD = true;
 boolean VSS = false;
@@ -155,6 +154,7 @@ boolean dropDown1 = false;
 int solarPanInt = 1;
 int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
 float[] xSolarPan = new float[solarPanInt], ySolarPan = new float[solarPanInt], widthSolarPan = new float[solarPanInt], heightSolarPan = new float[solarPanInt];
+float[] xSolarPanSell1 = new float[30*solarPanInt], ySolarPanSell1 = new float[30*solarPanInt], widthSolarPanSell1 = new float[30*solarPanInt], heightSolarPanSell1 = new float[30*solarPanInt];
 float[] xSolarPanVDD = new float[solarPanInt], ySolarPanVDD = new float[solarPanInt], widthSolarPanVDD = new float[solarPanInt], heightSolarPanVDD = new float[solarPanInt];
 float[] xSolarPanVSS = new float[solarPanInt], ySolarPanVSS = new float[solarPanInt], widhtSolarPanVSS = new float[solarPanInt], heightSolarPanVSS = new float[solarPanInt];
 
@@ -207,10 +207,8 @@ void settings(){
 
 void draw(){
   
-  
-  
-  solarMoveX[0] = 600;
-  solarMoveY[0] = 70;
+  solarMoveX[0] = 0;
+  solarMoveY[0] = 0;
   battMoveX[0] = 100;
   battMoveY[0] = 0;
   inverterMoveX[0] = 600;
@@ -226,7 +224,7 @@ void draw(){
   inverterSelectSetup();
   inveterSetup();
   solarPanItemSetup();
-  //solarPanSetup();
+  solarPanSetup();
   twentyFourVoltBattSetup();
   twentyFourVoltInverterSetup();
   twillveVoltBattSetup();
