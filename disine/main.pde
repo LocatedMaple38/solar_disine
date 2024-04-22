@@ -182,17 +182,6 @@ float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new 
 int mousePressed1 = 1;
 int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX2 = new int[mousePressed1], mouseY2 = new int[mousePressed1];
 
-PImage solarPan;
-PImage battImage1;
-PImage battImage2;
-PImage battImage3;
-PImage battImage4;
-PImage battImage5;
-PImage battImage6;
-String image = "../image/";
-String solar = image+"solar/";
-String battrey = image+"battrey/";
-String invrt = image+"inverter/";
 String path = "../display.txt";
 
 void setup(){
@@ -204,22 +193,24 @@ void setup(){
   yDropDown = 0;
   widthDropDown =50;
   heightDropDown = 20;
-  
 }
 
 void settings(){
   
   String[] lines = loadStrings(path);
   display = Integer.parseInt(lines[0]);
-  fullScreen(P3D, display);
+  fullScreen(display);
   //size(500, 500);
+
 }
 
 void draw(){
   
+  
+  
   solarMoveX[0] = 600;
   solarMoveY[0] = 70;
-  battMoveX[0] = 0;
+  battMoveX[0] = 100;
   battMoveY[0] = 0;
   inverterMoveX[0] = 600;
   inverterMoveY[0] = 315;
@@ -234,7 +225,7 @@ void draw(){
   inverterSelectSetup();
   inveterSetup();
   solarPanItemSetup();
-  solarPanSetup();
+  //solarPanSetup();
   twentyFourVoltBattSetup();
   twentyFourVoltInverterSetup();
   twillveVoltBattSetup();
@@ -270,13 +261,13 @@ void keyPressed(){
   if(key == 'a' || key == 'A'){
     if(dropDown1 == true){
       dropDown1 = false;
+      combinerBoxes = false;
+      solarPanBool = false;
       battBool = false;
       inverterBool = false;
-      twelveVBatt = false;
-      fortyEaghtVBatt = false;
-      twentyFourVBatt = false;
-      solarPanBool = false;
-      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }else{
       dropDown1 = true;
     }
@@ -286,13 +277,13 @@ void keyPressed(){
     if(battBool == true){
       battBool = false;
     }else{
-      battBool = true;
-      twelveVBatt = false;
-      fortyEaghtVBatt = false;
-      twentyFourVBatt = false;
-      solarPanBool = false;
-      inverterBool = false;
       combinerBoxes = false;
+      solarPanBool = false;
+      battBool = true;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
   }
   
@@ -330,10 +321,13 @@ void keyPressed(){
     if(solarPanBool == true){
       solarPanBool = false;
     }else{
+      combinerBoxes = false;
       solarPanBool = true;
       battBool = false;
       inverterBool = false;
-      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
   }
   
@@ -341,10 +335,13 @@ void keyPressed(){
     if(inverterBool == true){
       inverterBool = false;
     }else{
+      combinerBoxes = false;
       solarPanBool = false;
       battBool = false;
       inverterBool = true;
-      combinerBoxes = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
     }
   }
   
@@ -438,12 +435,12 @@ void keyPressed(){
     if(ESP == true){
       ESP = false;
     }else{
+      ESP = true;
       combinerBoxes = false;
       solarPanBool = false;
       battBool = false;
       inverterBool = false;
       DCDCBB = false;
-      ESP = true;
       CNC = false;
     }
   }
