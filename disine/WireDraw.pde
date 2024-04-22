@@ -1,7 +1,6 @@
 void wireDraw(){
   int i = 0;
   
-  stroke(red, green, blue);
   line(xWire[i], yWire[i], widthWire[i], heightWire[i]);
   noStroke();
   
