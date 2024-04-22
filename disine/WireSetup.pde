@@ -10,8 +10,5 @@ void wireSetup(){
   mouseY2[i] = 100;
   mouseY2[i] = 100;
   
-  if(i == wireInt){
-    i = 0;
-  }
-  i++;
+  if(i == wireInt){i = 0;}else{i++;}
 }
