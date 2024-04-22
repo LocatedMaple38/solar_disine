@@ -184,6 +184,7 @@ int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX
 
 String path = "../display.txt";
 
+
 void setup(){
   
   appWidth = width;
