@@ -164,4 +164,64 @@ void solarPanSetup(){
   widthSolarPanSell1[29] = 20;
   heightSolarPanSell1[29] = 20;
   
+  xSolarPanSell1[30] = 5+solarMoveX[0];
+  ySolarPanSell1[30] = 130+solarMoveY[0];
+  widthSolarPanSell1[30] = 20;
+  heightSolarPanSell1[30] = 20;
+  
+  xSolarPanSell1[31] = 30+solarMoveX[0];
+  ySolarPanSell1[31] = 130+solarMoveY[0];
+  widthSolarPanSell1[31] = 20;
+  heightSolarPanSell1[31] = 20;
+  
+  xSolarPanSell1[32] = 55+solarMoveX[0];
+  ySolarPanSell1[32] = 130+solarMoveY[0];
+  widthSolarPanSell1[32] = 20;
+  heightSolarPanSell1[32] = 20;
+  
+  xSolarPanSell1[33] = 80+solarMoveX[0];
+  ySolarPanSell1[33] = 130+solarMoveY[0];
+  widthSolarPanSell1[33] = 20;
+  heightSolarPanSell1[33] = 20;
+  
+  xSolarPanSell1[34] = 105+solarMoveX[0];
+  ySolarPanSell1[34] = 130+solarMoveY[0];
+  widthSolarPanSell1[34] = 20;
+  heightSolarPanSell1[34] = 20;
+  
+  xSolarPanSell1[35] = 130+solarMoveX[0];
+  ySolarPanSell1[35] = 130+solarMoveY[0];
+  widthSolarPanSell1[35] = 20;
+  heightSolarPanSell1[35] = 20;
+  
+  xSolarPanSell1[36] = 5+solarMoveX[0];
+  ySolarPanSell1[36] = 155+solarMoveY[0];
+  widthSolarPanSell1[36] = 20;
+  heightSolarPanSell1[36] = 20;
+  
+  xSolarPanSell1[37] = 30+solarMoveX[0];
+  ySolarPanSell1[37] = 155+solarMoveY[0];
+  widthSolarPanSell1[37] = 20;
+  heightSolarPanSell1[37] = 20;
+  
+  xSolarPanSell1[38] = 55+solarMoveX[0];
+  ySolarPanSell1[38] = 155+solarMoveY[0];
+  widthSolarPanSell1[38] = 20;
+  heightSolarPanSell1[38] = 20;
+  
+  xSolarPanSell1[39] = 55+solarMoveX[0];
+  ySolarPanSell1[39] = 155+solarMoveY[0];
+  widthSolarPanSell1[39] = 20;
+  heightSolarPanSell1[39] = 20;
+  
+  xSolarPanSell1[40] = 80+solarMoveX[0];
+  ySolarPanSell1[40] = 155+solarMoveY[0];
+  widthSolarPanSell1[40] = 20;
+  heightSolarPanSell1[40] = 20;
+  
+  xSolarPanSell1[41] = 105+solarMoveX[0];
+  ySolarPanSell1[41] = 155+solarMoveY[0];
+  widthSolarPanSell1[41] = 20;
+  heightSolarPanSell1[41] = 20;
+  
 }
