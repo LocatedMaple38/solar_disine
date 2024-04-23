@@ -154,7 +154,7 @@ boolean dropDown1 = false;
 int solarPanInt = 1;
 int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
 float[] xSolarPan = new float[solarPanInt], ySolarPan = new float[solarPanInt], widthSolarPan = new float[solarPanInt], heightSolarPan = new float[solarPanInt];
-float[] xSolarPanSell1 = new float[30*solarPanInt], ySolarPanSell1 = new float[30*solarPanInt], widthSolarPanSell1 = new float[30*solarPanInt], heightSolarPanSell1 = new float[30*solarPanInt];
+float[] xSolarPanSell1 = new float[54*solarPanInt], ySolarPanSell1 = new float[54*solarPanInt], widthSolarPanSell1 = new float[54*solarPanInt], heightSolarPanSell1 = new float[54*solarPanInt];
 float[] xSolarPanVDD = new float[solarPanInt], ySolarPanVDD = new float[solarPanInt], widthSolarPanVDD = new float[solarPanInt], heightSolarPanVDD = new float[solarPanInt];
 float[] xSolarPanVSS = new float[solarPanInt], ySolarPanVSS = new float[solarPanInt], widhtSolarPanVSS = new float[solarPanInt], heightSolarPanVSS = new float[solarPanInt];
 
