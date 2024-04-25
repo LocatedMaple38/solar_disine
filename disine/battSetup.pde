@@ -1,18 +1,24 @@
 void battSetup(){
+  int i = 0;
   
-  xBatt[0] = battMoveX[0];
-  yBatt[0] = 20-battMoveY[0];
-  widthBatt[0] = 100;
-  heightBatt[0] = 50;
+  xBatt[i] = battMoveX[i];
+  yBatt[i] = battMoveY[i]+20;
+  widthBatt[i] = 100;
+  heightBatt[i] = 50;
   
-  xBattVDD[0] = xBatt[0]*1/10+battMoveX[0]-wireWidth/2;
-  yBattVDD[0] = battMoveY[0];
-  widthBattVDD[0] = wireWidth;
-  heightBattVDD[0] = 20;
+  xBattVDD[i] = widthBatt[i]*1/10+battMoveX[i]-wireWidth/2;
+  yBattVDD[i] = battMoveY[i];
+  widthBattVDD[i] = wireWidth;
+  heightBattVDD[i] = 20;
   
-  xBattVSS[0] = xBatt[0]*9/10+battMoveX[0]-wireWidth/2;
-  yBattVSS[0] = battMoveY[0];
-  widthBattVSS[0] = wireWidth;
-  heightBattVSS[0] = 20;
-
+  xBattVSS[i] = widthBatt[i]*9/10+battMoveX[i]-wireWidth/2;
+  yBattVSS[i] = battMoveY[i];
+  widthBattVSS[i] = wireWidth;
+  heightBattVSS[i] = 20;
+  
+  if(i == battInt){
+    i = 0;
+  }else{
+    i++;
+  }
 }
