@@ -36,8 +36,8 @@ void drawSetup(){
   heightAddESP = 20;
   
   xAddWire = 0;
-  yAddWire = 80;
-  widthAddWire = 150;
+  yAddWire = 160;
+  widthAddWire = 225;
   heightAddWire = 20;
   
 }
