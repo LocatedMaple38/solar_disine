@@ -2,6 +2,12 @@ int wireWidth = 5;
 int appWidth, appHeight;
 int display;
 
+boolean scrollUP = false;
+boolean scrollDown = false;
+
+float xVCursor, yVCursor, widthVCursor, heightVCursor;
+float xHCursor, yHCursor, widthHCursor, heightHCursor;
+
 boolean VDD = true;
 boolean VSS = false;
 boolean L1 = false;
@@ -15,7 +21,6 @@ boolean twelveVoltInverterBool = false;
 boolean twentyFourVoltInverterBool = false;
 boolean fortyEaghtVoltInverterBool = false;
 boolean gridTieInverteBool = false;
-boolean arowSlect = false;
 
 float x48VInverter, y48VInverter, width48VInverter, height48VInverter;
 float x24VInverter, y24VInverter, width24VInverter, height24VInverter;
@@ -167,6 +172,8 @@ float[] xBattVSS = new float[battInt], yBattVSS = new float[battInt], widthBattV
 
 //invrter
 int inverterInt = 1;
+boolean[] line1 = new boolean[inverterInt];
+boolean[] line2 = new boolean[inverterInt];
 int[] inverterMoveX = new int[inverterInt], inverterMoveY = new int[inverterInt];
 float[] xInverter = new float[inverterInt], yInverter = new float[inverterInt], widthInverter = new float[inverterInt], heightInverter = new float[inverterInt];
 float[] xInverterVDD = new float[inverterInt], yInverterVDD = new float[inverterInt], widthInverterVDD = new float[inverterInt], heightInverterVDD = new float[inverterInt];
@@ -178,41 +185,55 @@ float[] xInverterGround = new float[inverterInt], yInverterGround = new float[in
 
 //wire
 int wireInt = 1;
+boolean wireBool = false;
+boolean wireCursorFree = true;
 float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new float[wireInt], heightWire = new float[wireInt];
 int mousePressed1 = 1;
 int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX2 = new int[mousePressed1], mouseY2 = new int[mousePressed1];
 
-String path = "../display.txt";
-
+String path1 = "../display.txt";
+String path2 = "../save.txt";
 
 void setup(){
+  
+  surface.setResizable(true);
+  surface.setLocation(0, 0);
+  surface.setTitle("Solar Design");
   
   appWidth = width;
   appHeight = height;
   
   xDropDown = 0;
   yDropDown = 0;
-  widthDropDown =50;
+  widthDropDown = 50;
   heightDropDown = 20;
+  
+  String[] lines2 = loadStrings(path2);
+  solarPanInt = Integer.parseInt(lines2[0]);
+  battInt = Integer.parseInt(lines2[1]);
+  wireInt = Integer.parseInt(lines2[2]);
+  inverterInt = Integer.parseInt(lines2[3]);
+  
 }
 
 void settings(){
   
-  String[] lines = loadStrings(path);
-  display = Integer.parseInt(lines[0]);
-  fullScreen(display);
-  //size(500, 500);
-
+  String[] lines1 = loadStrings(path1);
+  display = Integer.parseInt(lines1[0]);
+  //fullScreen(display);
+  size(500, 500);
+  
+  
 }
 
 void draw(){
   
-  solarMoveX[0] = 0;
+  solarMoveX[0] = 500;
   solarMoveY[0] = 0;
-  battMoveX[0] = 100;
+  battMoveX[0] = 0;
   battMoveY[0] = 0;
-  inverterMoveX[0] = 600;
-  inverterMoveY[0] = 315;
+  inverterMoveX[0] = 0;
+  inverterMoveY[0] = 0;
   
   battSetup();
   combinerBoxesSetup();
@@ -232,20 +253,21 @@ void draw(){
   voltSelectBattSetup();
   DCDistributionBarsBlocksSetup();
   ElectricalPanelsSubpanelsSetup();
-  //wireSetup();
+  wireSetup();
+  wireSnapSetup();
   
   noStroke();
   fill(#a0a0a0);
-  rect(0, 0, appWidth, appHeight);
+  rect(0, 0, displayWidth, displayHeight);
   noFill();
   battDraw();
   inverterDraw();
   solarPanDraw();
+  wireDraw();
   
   if(dropDown1 == true){
     draw1();
   }else{}
-
   textAlign(LEFT, TOP);
   textSize(15);
   fill(#ffffff);
@@ -256,7 +278,12 @@ void draw(){
   fill(0);
   line(0, 13, 0+textWidth("A"), 13);
   noFill();
-  
+    if(wireBool == true){
+    fill(0);
+    line(xVCursor, yVCursor, widthVCursor, heightVCursor);
+    line(xHCursor, yHCursor, widthHCursor, heightHCursor);
+    noFill();
+  }else{}
 }
 
 void keyPressed(){
@@ -270,6 +297,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }else{
       dropDown1 = true;
     }
@@ -286,6 +314,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -330,6 +359,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -344,6 +374,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -402,6 +433,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -416,6 +448,7 @@ void keyPressed(){
       DCDCBB = false;
       ESP = false;
       CNC = true;
+      wireBool = false;
     }
   }
   
@@ -430,6 +463,7 @@ void keyPressed(){
       DCDCBB = true;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -444,9 +478,17 @@ void keyPressed(){
       inverterBool = false;
       DCDCBB = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
+  if(dropDown1 == true && key == 'w' || key == 'W'){
+    if(wireBool == true){
+      wireBool = false;
+    }else{
+      wireBool = true;
+    }
+  }
 }
 
 void mousePressed(){
@@ -461,6 +503,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }else{
       dropDown1 = true;
     }
@@ -480,6 +523,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -497,6 +541,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -514,6 +559,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -528,6 +574,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -542,6 +589,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = false;
       CNC = true;
+      wireBool = false;
     }
   }
   
@@ -556,6 +604,7 @@ void mousePressed(){
       DCDCBB = false;
       ESP = true;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -570,6 +619,7 @@ void mousePressed(){
       DCDCBB = true;
       ESP = false;
       CNC = false;
+      wireBool = false;
     }
   }
   
@@ -650,6 +700,47 @@ void mousePressed(){
     }
   }
   
-  println(CNC);
+  if(dropDown1 == true && mouseX>xAddWire && mouseX<xAddWire+widthAddWire && mouseY>yAddWire && mouseY<yAddWire+heightAddWire){
+    if(wireBool == true){
+      wireBool = false;
+    }else{
+      combinerBoxes = false;
+      solarPanBool = false;
+      battBool = false;
+      inverterBool = false;
+      DCDCBB = false;
+      ESP = false;
+      CNC = false;
+      wireBool = true;
+    }
+  }
+  
   println(mouseX, mouseY);
+}
+
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  
+  if(0 > e || 0 < e){
+    
+    if(0 > e){
+      scrollUP = true;
+    }else{
+      scrollUP = false;
+    }
+    
+    if(0 < e){
+      scrollDown = true;
+    }else{
+      scrollDown = false;
+    }
+  }
+  
+  if(0 == e){
+    scrollDown = false;
+    scrollUP = false;
+  }
+  
+  println(scrollUP);
+  println(scrollDown);
 }
