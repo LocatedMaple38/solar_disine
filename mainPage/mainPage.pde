@@ -4,14 +4,17 @@ float xSetDisplay, ySetDisplay, widthSetDisplay, heightSetDisplay;
 int display = 1;
 int appWidth, appHeight;
 
-PrintWriter output;
+PrintWriter output1;
+PrintWriter output2;
 
-String path = "../display.txt";
+String path1 = "../display.txt";
+String path2 = "../save.txt";
 
 void setup(){
   size(500, 500);
   
-  output = createWriter(path);
+  output1 = createWriter(path1);
+  output2 = createWriter(path2);
   
   appWidth = width;
   appHeight = height;
@@ -28,7 +31,8 @@ void setup(){
 }
 
 void draw(){
-  output.flush();
+  output1.flush();
+  output2.flush();
   
   fill(255);
   rect(xLoadFile, yLoadFile, widthLoadFile, heightLoadFile);
