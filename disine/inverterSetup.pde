@@ -14,15 +14,10 @@ void inveterSetup(){
   widthInverterVSS[0] = wireWidth;
   heightInverterVSS[0] = 20;
   
-  xInverterLine1[0] = xInverter[0]+50+wireWidth/2;
+  xInverterLine1[0] = xInverter[0]+50;
   yInverterLine1[0] = yInverter[0]+heightInverter[0];
   widthInverterLine1[0] = wireWidth;
   heightInverterLine1[0] = 20;
-  
-  xInverterLine2[0] = xInverter[0]+50-wireWidth/2;
-  yInverterLine2[0] = yInverter[0]+heightInverter[0];
-  widthInverterLine2[0] = wireWidth;
-  heightInverterLine2[0] = 20;
   
   xInverterNeutral[0] = xInverter[0]+30;
   yInverterNeutral[0] = yInverter[0]+heightInverter[0];
