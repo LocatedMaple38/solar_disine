@@ -7,7 +7,7 @@ void draw1(){
   rect(xAddCNC, yAddCNC, widthAddCNC, heightAddCNC);
   rect(xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
   rect(xAddESP, yAddESP, widthAddESP, heightAddESP);
-  //rect(xAddWire, yAddWire, widthAddWire, heightAddWire);
+  rect(xAddWire, yAddWire, widthAddWire, heightAddWire);
   
   textAlign(LEFT, TOP);
   textSize(15);
@@ -19,7 +19,7 @@ void draw1(){
   text("Communication / Network Cables", xAddCNC, yAddCNC, widthAddCNC, heightAddCNC);
   text("DC Distribution Bars / Blocks", xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
   text("Electrical Panels & Subpanels", xAddESP, yAddESP, widthAddESP, heightAddESP);
-  //text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
+  text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
   stroke(0);
   fill(0);
   line(0, 33, 0+textWidth("B"), 33);
@@ -29,6 +29,7 @@ void draw1(){
   line(textWidth("C"), 113, textWidth("C")+textWidth("o"), 113);
   line(0, 133, 0+textWidth("D"), 133);
   line(0, 153, 0+textWidth("E"), 153);
+  line(0, 173, 0+textWidth("W"), 173);
   noStroke();
   noFill();
   
