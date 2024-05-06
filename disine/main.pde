@@ -21,6 +21,7 @@ boolean twelveVoltInverterBool = false;
 boolean twentyFourVoltInverterBool = false;
 boolean fortyEaghtVoltInverterBool = false;
 boolean gridTieInverteBool = false;
+boolean togle = false;
 
 float x48VInverter, y48VInverter, width48VInverter, height48VInverter;
 float x24VInverter, y24VInverter, width24VInverter, height24VInverter;
@@ -159,9 +160,9 @@ boolean dropDown1 = false;
 int solarPanInt = 1;
 int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
 float[] xSolarPan = new float[solarPanInt], ySolarPan = new float[solarPanInt], widthSolarPan = new float[solarPanInt], heightSolarPan = new float[solarPanInt];
-float[] xSolarPanSell1 = new float[54*solarPanInt], ySolarPanSell1 = new float[54*solarPanInt], widthSolarPanSell1 = new float[54*solarPanInt], heightSolarPanSell1 = new float[54*solarPanInt];
 float[] xSolarPanVDD = new float[solarPanInt], ySolarPanVDD = new float[solarPanInt], widthSolarPanVDD = new float[solarPanInt], heightSolarPanVDD = new float[solarPanInt];
 float[] xSolarPanVSS = new float[solarPanInt], ySolarPanVSS = new float[solarPanInt], widhtSolarPanVSS = new float[solarPanInt], heightSolarPanVSS = new float[solarPanInt];
+PImage solar;
 
 //Battrey
 int battInt = 1;
@@ -191,10 +192,11 @@ float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new 
 int mousePressed1 = 1;
 int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX2 = new int[mousePressed1], mouseY2 = new int[mousePressed1];
 
-String path1 = "../display.txt";
-String path2 = "../save.txt";
+String path1 = "save.txt";
+String[] lines1;
 
 void setup(){
+  lines1 = loadStrings(path1);
   
   surface.setResizable(true);
   surface.setLocation(0, 0);
@@ -208,31 +210,20 @@ void setup(){
   widthDropDown = 50;
   heightDropDown = 20;
   
-  String[] lines2 = loadStrings(path2);
-  solarPanInt = Integer.parseInt(lines2[0]);
-  battInt = Integer.parseInt(lines2[1]);
-  wireInt = Integer.parseInt(lines2[2]);
-  inverterInt = Integer.parseInt(lines2[3]);
-  
+  println(lines1.length);
 }
 
 void settings(){
-  
-  String[] lines1 = loadStrings(path1);
-  display = Integer.parseInt(lines1[0]);
-  //fullScreen(display);
   size(500, 500);
-  
-  
 }
 
 void draw(){
   
-  solarMoveX[0] = 500;
+  solarMoveX[0] = 300;
   solarMoveY[0] = 0;
-  battMoveX[0] = 0;
+  battMoveX[0] = 200;
   battMoveY[0] = 0;
-  inverterMoveX[0] = 0;
+  inverterMoveX[0] = 100;
   inverterMoveY[0] = 0;
   
   battSetup();
@@ -278,11 +269,17 @@ void draw(){
   fill(0);
   line(0, 13, 0+textWidth("A"), 13);
   noFill();
-    if(wireBool == true){
+  
+  if(wireBool == true){
     fill(0);
     line(xVCursor, yVCursor, widthVCursor, heightVCursor);
     line(xHCursor, yHCursor, widthHCursor, heightHCursor);
     noFill();
+  }else{}
+  
+  if(togle == true){
+    togle = false;
+    dropDown1 = false;
   }else{}
 }
 
@@ -485,8 +482,10 @@ void keyPressed(){
   if(dropDown1 == true && key == 'w' || key == 'W'){
     if(wireBool == true){
       wireBool = false;
+      togle = true;
     }else{
       wireBool = true;
+      togle = true;
     }
   }
 }
