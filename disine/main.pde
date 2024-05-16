@@ -1,10 +1,9 @@
 int wireWidth = 5;
 int appWidth, appHeight;
-int display;
+int mousePressedINT = 2;
+boolean mouse1Pressed = true;
 
 boolean scrollUP = false;
-boolean scrollDown = false;
-
 float xVCursor, yVCursor, widthVCursor, heightVCursor;
 float xHCursor, yHCursor, widthHCursor, heightHCursor;
 
@@ -189,11 +188,13 @@ int wireInt = 1;
 boolean wireBool = false;
 boolean wireCursorFree = true;
 float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new float[wireInt], heightWire = new float[wireInt];
-int mousePressed1 = 1;
-int[] mouseX1 = new int[mousePressed1], mouseY1 = new int[mousePressed1], mouseX2 = new int[mousePressed1], mouseY2 = new int[mousePressed1];
+int[] mouseX1 = new int[wireInt], mouseY1 = new int[wireInt], mouseX2 = new int[wireInt], mouseY2 = new int[wireInt];
 
 String path1 = "save.txt";
 String[] lines1;
+
+int a = 0;
+int b = 0;
 
 void setup(){
   lines1 = loadStrings(path1);
@@ -209,8 +210,8 @@ void setup(){
   yDropDown = 0;
   widthDropDown = 50;
   heightDropDown = 20;
-  
-  println(lines1.length);
+    
+  //println(lines1.length);
 }
 
 void settings(){
@@ -249,7 +250,7 @@ void draw(){
   
   noStroke();
   fill(#a0a0a0);
-  rect(0, 0, displayWidth, displayHeight);
+  rect(0, 0, displayWidth*500, displayHeight*500);
   noFill();
   battDraw();
   inverterDraw();
@@ -266,14 +267,19 @@ void draw(){
   fill(0);
   text("Add", xDropDown, yDropDown, widthDropDown, heightDropDown);
   stroke(0);
+  strokeWeight(1);
   fill(0);
   line(0, 13, 0+textWidth("A"), 13);
   noFill();
+  noStroke();
   
   if(wireBool == true){
     fill(0);
+    stroke(1);
+    strokeWeight(1);
     line(xVCursor, yVCursor, widthVCursor, heightVCursor);
     line(xHCursor, yHCursor, widthHCursor, heightHCursor);
+    noStroke();
     noFill();
   }else{}
   
@@ -281,6 +287,16 @@ void draw(){
     togle = false;
     dropDown1 = false;
   }else{}
+  
+  xWire = expand(xWire, wireInt);
+  yWire = expand(yWire, wireInt);
+  widthWire = expand(widthWire, wireInt);
+  heightWire = expand(heightWire, wireInt);
+  mouseX1 = expand(mouseX1, wireInt);
+  mouseY1 = expand(mouseY1, wireInt);
+  mouseX2 = expand(mouseX2, wireInt);
+  mouseY2 = expand(mouseY2, wireInt);
+  
 }
 
 void keyPressed(){
@@ -711,35 +727,21 @@ void mousePressed(){
       ESP = false;
       CNC = false;
       wireBool = true;
+      togle = true;
     }
   }
-  
-  println(mouseX, mouseY);
-}
-
-void mouseWheel(MouseEvent event) {
-  float e = event.getCount();
-  
-  if(0 > e || 0 < e){
     
-    if(0 > e){
-      scrollUP = true;
+  if(wireBool == true){
+    if(mouse1Pressed == true){
+      mouseX1[wireInt-1] = mouseX;
+      mouseY1[wireInt-1] = mouseY;
+      mouse1Pressed = false;
     }else{
-      scrollUP = false;
-    }
-    
-    if(0 < e){
-      scrollDown = true;
-    }else{
-      scrollDown = false;
+      mouseX2[wireInt-1] = mouseX;
+      mouseY2[wireInt-1] = mouseY;
+      mouse1Pressed = true;
+      wireInt++;
     }
   }
-  
-  if(0 == e){
-    scrollDown = false;
-    scrollUP = false;
-  }
-  
-  println(scrollUP);
-  println(scrollDown);
+  //println(mouseX, mouseY);
 }
