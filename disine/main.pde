@@ -198,6 +198,7 @@ int b = 0;
 
 void setup(){
   lines1 = loadStrings(path1);
+
   
   surface.setResizable(true);
   surface.setLocation(0, 0);
@@ -211,7 +212,7 @@ void setup(){
   widthDropDown = 50;
   heightDropDown = 20;
     
-  //println(lines1.length);
+  println(lines1.length);
   
   xWire[0] = 100;
   yWire[0] = 100;
@@ -220,8 +221,8 @@ void setup(){
 }
 
 void settings(){
-  size(500, 500);
-  //fullScreen(SPAN);
+  size(500, 500, P2D);
+  //fullScreen(P2D, SPAN);
 }
 
 void draw(){
@@ -738,7 +739,7 @@ void mousePressed(){
       wireInt++;
     }
     
-    println(mouse1Pressed);
+    //println(mouse1Pressed);
   }
   //println(mouseX, mouseY);
 }
