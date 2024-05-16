@@ -13,6 +13,7 @@ void wireDraw(){
     a++;
   }
   
+  println(wireInt-1);
 }
 
 void wireSetup(){
@@ -28,4 +29,8 @@ void wireSetup(){
       b++;
     }
   }
+}
+
+void line1(){
+  
 }
