@@ -1,7 +1,7 @@
 int wireWidth = 5;
 int appWidth, appHeight;
 int mousePressedINT = 2;
-boolean mouse1Pressed = true;
+boolean mouse1Pressed = true, mouse2Pressed = false;
 
 boolean scrollUP = false;
 float xVCursor, yVCursor, widthVCursor, heightVCursor;
@@ -212,10 +212,16 @@ void setup(){
   heightDropDown = 20;
     
   //println(lines1.length);
+  
+  xWire[0] = 100;
+  yWire[0] = 100;
+  widthWire[0] = 50;
+  heightWire[0] = 405;
 }
 
 void settings(){
   size(500, 500);
+  //fullScreen(SPAN);
 }
 
 void draw(){
@@ -246,7 +252,6 @@ void draw(){
   DCDistributionBarsBlocksSetup();
   ElectricalPanelsSubpanelsSetup();
   wireSetup();
-  wireSnapSetup();
   
   noStroke();
   fill(#a0a0a0);
@@ -273,19 +278,10 @@ void draw(){
   noFill();
   noStroke();
   
-  if(wireBool == true){
-    fill(0);
-    stroke(1);
-    strokeWeight(1);
-    line(xVCursor, yVCursor, widthVCursor, heightVCursor);
-    line(xHCursor, yHCursor, widthHCursor, heightHCursor);
-    noStroke();
-    noFill();
-  }else{}
-  
   if(togle == true){
     togle = false;
     dropDown1 = false;
+    mouse2Pressed = true;
   }else{}
   
   xWire = expand(xWire, wireInt);
@@ -296,7 +292,6 @@ void draw(){
   mouseY1 = expand(mouseY1, wireInt);
   mouseX2 = expand(mouseX2, wireInt);
   mouseY2 = expand(mouseY2, wireInt);
-  
 }
 
 void keyPressed(){
@@ -742,6 +737,8 @@ void mousePressed(){
       mouse1Pressed = true;
       wireInt++;
     }
+    
+    println(mouse1Pressed);
   }
   //println(mouseX, mouseY);
 }
