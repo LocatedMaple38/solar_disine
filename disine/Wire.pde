@@ -3,6 +3,9 @@ void wireDraw(){
   stroke(#ff0000);
   strokeWeight(wireWidth);
   fill(#ff0000);
+  if(wireBool == true){
+    line(mouseX1[wireInt-1], mouseY1[wireInt-1], xx, yx);
+  }
   line(xWire[a], yWire[a], widthWire[a], heightWire[a]);
   noFill();
   noStroke();
@@ -12,8 +15,7 @@ void wireDraw(){
   }else{
     a++;
   }
-  
-  println(wireInt-1);
+  //println(wireInt-1);
 }
 
 void wireSetup(){
@@ -29,8 +31,4 @@ void wireSetup(){
       b++;
     }
   }
-}
-
-void line1(){
-  
 }
