@@ -187,14 +187,24 @@ float[] xInverterGround = new float[inverterInt], yInverterGround = new float[in
 int wireInt = 1;
 boolean wireBool = false;
 boolean wireCursorFree = true;
+boolean end = false;
 float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new float[wireInt], heightWire = new float[wireInt];
 int[] mouseX1 = new int[wireInt], mouseY1 = new int[wireInt], mouseX2 = new int[wireInt], mouseY2 = new int[wireInt];
+
+//grid
+int gridLnY = 100;
+int gridLnX = 100;
+float[] xGridln = new float[gridLnX], yGridln = new float[gridLnX], widthGridln = new float[gridLnX], heightGridln = new float[gridLnX];
 
 String path1 = "save.txt";
 String[] lines1;
 
 int a = 0;
 int b = 0;
+int c = 0;
+int d = 0;
+
+float xx, yx, widthx, heightx;
 
 void setup(){
   lines1 = loadStrings(path1);
@@ -212,7 +222,7 @@ void setup(){
   widthDropDown = 50;
   heightDropDown = 20;
     
-  println(lines1.length);
+  //println(lines1.length);
   
   xWire[0] = 100;
   yWire[0] = 100;
@@ -221,11 +231,28 @@ void setup(){
 }
 
 void settings(){
-  size(500, 500, P2D);
-  //fullScreen(P2D, SPAN);
+  //size(500, 500);
+  fullScreen(SPAN);
 }
 
 void draw(){
+  xWire = expand(xWire, wireInt);
+  yWire = expand(yWire, wireInt);
+  widthWire = expand(widthWire, wireInt);
+  heightWire = expand(heightWire, wireInt);
+  mouseX1 = expand(mouseX1, wireInt);
+  mouseY1 = expand(mouseY1, wireInt);
+  mouseX2 = expand(mouseX2, wireInt);
+  mouseY2 = expand(mouseY2, wireInt);
+  
+  xx = mouseX;
+  yx = mouseY;
+  
+  fill(#aaaaaa);
+  rect(0, 0, displayWidth^2, displayHeight^2);
+  noFill();
+  
+  //println(mouseX+" "+mouseY);
   
   solarMoveX[0] = 300;
   solarMoveY[0] = 0;
@@ -234,6 +261,7 @@ void draw(){
   inverterMoveX[0] = 100;
   inverterMoveY[0] = 0;
   
+  gridSetup();
   battSetup();
   combinerBoxesSetup();
   communicationNetwokeCablesSetup();
@@ -254,14 +282,11 @@ void draw(){
   ElectricalPanelsSubpanelsSetup();
   wireSetup();
   
-  noStroke();
-  fill(#a0a0a0);
-  rect(0, 0, displayWidth*500, displayHeight*500);
-  noFill();
+  wireDraw();
   battDraw();
   inverterDraw();
   solarPanDraw();
-  wireDraw();
+  gridDraw();
   
   if(dropDown1 == true){
     draw1();
@@ -271,11 +296,12 @@ void draw(){
   fill(#ffffff);
   rect(xDropDown, yDropDown, widthDropDown, heightDropDown);
   fill(0);
+  noStroke();
   text("Add", xDropDown, yDropDown, widthDropDown, heightDropDown);
+  fill(0);
   stroke(0);
   strokeWeight(1);
-  fill(0);
-  line(0, 13, 0+textWidth("A"), 13);
+  line(0, 16, 0+textWidth("A"), 16);
   noFill();
   noStroke();
   
@@ -284,15 +310,6 @@ void draw(){
     dropDown1 = false;
     mouse2Pressed = true;
   }else{}
-  
-  xWire = expand(xWire, wireInt);
-  yWire = expand(yWire, wireInt);
-  widthWire = expand(widthWire, wireInt);
-  heightWire = expand(heightWire, wireInt);
-  mouseX1 = expand(mouseX1, wireInt);
-  mouseY1 = expand(mouseY1, wireInt);
-  mouseX2 = expand(mouseX2, wireInt);
-  mouseY2 = expand(mouseY2, wireInt);
 }
 
 void keyPressed(){
@@ -738,7 +755,6 @@ void mousePressed(){
       mouse1Pressed = true;
       wireInt++;
     }
-    
     //println(mouse1Pressed);
   }
   //println(mouseX, mouseY);
