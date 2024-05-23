@@ -12,9 +12,9 @@ void voltSelectBattDraw(){
   text("12V", x12VBatt, y12VBatt, width12VBatt, height12VBatt);
   stroke(0);
   fill(0);
-  line(225, 33, 225+textWidth("4"), 33);
-  line(225, 53, 225+textWidth("2"), 53);
-  line(225, 73, 225+textWidth("1"), 73);
+  line(225, 36, 225+textWidth("4"), 36);
+  line(225, 56, 225+textWidth("2"), 56);
+  line(225, 76, 225+textWidth("1"), 76);
   noStroke();
   noFill();
   
