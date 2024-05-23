@@ -14,10 +14,10 @@ void inverterSelectDraw(){
   
   stroke(0);
   fill(0);
-  line(225, 73, 225+textWidth("4"), 73);
-  line(225, 93, 225+textWidth("2"), 93);
-  line(225, 113, 225+textWidth("1"), 113);
-  line(225, 133, 225+textWidth("4"), 133);
+  line(225, 76, 225+textWidth("4"), 76);
+  line(225, 96, 225+textWidth("2"), 96);
+  line(225, 116, 225+textWidth("1"), 116);
+  line(225, 136, 225+textWidth("4"), 136);
   noStroke();
   noFill();
   
