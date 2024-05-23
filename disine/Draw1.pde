@@ -23,14 +23,14 @@ void draw1(){
   stroke(0);
   fill(0);
   strokeWeight(1);
-  line(0, 33, 0+textWidth("B"), 33);
-  line(0, 53, 0+textWidth("S"), 53);
-  line(0, 73, 0+textWidth("I"), 73);
-  line(0, 93, 0+textWidth("C"), 93);
-  line(textWidth("C"), 113, textWidth("C")+textWidth("o"), 113);
-  line(0, 133, 0+textWidth("D"), 133);
-  line(0, 153, 0+textWidth("E"), 153);
-  line(0, 173, 0+textWidth("W"), 173);
+  line(0, 36, 0+textWidth("B"), 36);
+  line(0, 56, 0+textWidth("S"), 56);
+  line(0, 76, 0+textWidth("I"), 76);
+  line(0, 96, 0+textWidth("C"), 96);
+  line(textWidth("C"), 116, textWidth("C")+textWidth("o"), 116);
+  line(0, 136, 0+textWidth("D"), 136);
+  line(0, 156, 0+textWidth("E"), 156);
+  line(0, 176, 0+textWidth("W"), 176);
   noStroke();
   noFill();
   
