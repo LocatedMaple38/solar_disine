@@ -155,6 +155,11 @@ float xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB;
 float xAddESP, yAddESP, widthAddESP, heightAddESP;
 boolean dropDown1 = false;
 
+float xFileDropDown, yFileDropDown, widthFileDropDown, heightFileDropDown;
+float xFileSave, yFileSave, widthFileSave, heightFileSave;
+float xFileSaveAs, yFileSaveAs, widthFileSaveAs, heightFaileSaveAs;
+boolean fileDropDown = false;
+
 //Solar Panel
 int solarPanInt = 1;
 int[] solarMoveX = new int[solarPanInt], solarMoveY = new int[solarPanInt];
@@ -203,12 +208,15 @@ int a = 0;
 int b = 0;
 int c = 0;
 int d = 0;
+int e = 0;
+int f = 0;
 
 float xx, yx, widthx, heightx;
 
+boolean[] slect = new boolean[12];
+
 void setup(){
   lines1 = loadStrings(path1);
-
   
   surface.setResizable(true);
   surface.setLocation(0, 0);
@@ -224,18 +232,44 @@ void setup(){
     
   //println(lines1.length);
   
-  xWire[0] = 100;
-  yWire[0] = 100;
-  widthWire[0] = 50;
-  heightWire[0] = 405;
+  xWire[0] = 0;
+  yWire[0] = 0;
+  widthWire[0] = 0;
+  heightWire[0] = 0;
+  
+  gridTieInverterSetup();
+  ElectricalPanelsSubpanelsSetup();
+  combinerBoxesSetup();
+  DCDistributionBarsBlocksSetup();
+  drawSetup();
+  inverterSelectSetup();
+  fortyEightVoltBattSetup();
+  communicationNetwokeCablesSetup();
+  twillveVoltBattSetup();
+  voltSelectBattSetup();
+  twillveVoltInverterSetup();
+  twentyFourVoltInverterSetup();
+  fortyEightVoltInverterSetup();
+  solarPanItemSetup();
+  twentyFourVoltBattSetup();
+  fileDropDownSetup();
+  
 }
 
 void settings(){
-  //size(500, 500);
-  fullScreen(SPAN);
+  size(500, 500);
+  //fullScreen(SPAN);
 }
 
-void draw(){
+void draw(){  
+  solarPanSetup();
+  battSetup();
+  inveterSetup();
+  
+  if(wireBool == true){
+    wireSetup();
+  }
+  
   xWire = expand(xWire, wireInt);
   yWire = expand(yWire, wireInt);
   widthWire = expand(widthWire, wireInt);
@@ -261,47 +295,38 @@ void draw(){
   inverterMoveX[0] = 100;
   inverterMoveY[0] = 0;
   
-  gridSetup();
-  battSetup();
-  combinerBoxesSetup();
-  communicationNetwokeCablesSetup();
-  drawSetup();
-  fortyEightVoltBattSetup();
-  fortyEightVoltInverterSetup();
-  gridTieInverterSetup();
-  inverterSelectSetup();
-  inveterSetup();
-  solarPanItemSetup();
-  solarPanSetup();
-  twentyFourVoltBattSetup();
-  twentyFourVoltInverterSetup();
-  twillveVoltBattSetup();
-  twillveVoltInverterSetup();
-  voltSelectBattSetup();
-  DCDistributionBarsBlocksSetup();
-  ElectricalPanelsSubpanelsSetup();
-  wireSetup();
-  
   wireDraw();
   battDraw();
   inverterDraw();
   solarPanDraw();
-  gridDraw();
   
   if(dropDown1 == true){
     draw1();
-  }else{}
-  textAlign(LEFT, TOP);
+  }
+  
+  if(fileDropDown == true){
+    fileDropDown();
+  }
+  textAlign(LEFT, CENTER);
   textSize(15);
   fill(#ffffff);
+  noStroke();
+  if(slect[0] == true){
+    stroke(0);
+    strokeWeight(5);
+  }
   rect(xDropDown, yDropDown, widthDropDown, heightDropDown);
+  noStroke();
+  if(slect[1] == true){
+    stroke(0);
+    strokeWeight(5);
+  }
+  rect(xFileDropDown, yFileDropDown, widthFileDropDown, heightFileDropDown);
+  noStroke();
   fill(0);
   noStroke();
   text("Add", xDropDown, yDropDown, widthDropDown, heightDropDown);
-  fill(0);
-  stroke(0);
-  strokeWeight(1);
-  line(0, 16, 0+textWidth("A"), 16);
+  text("File", xFileDropDown, yFileDropDown, widthFileDropDown, heightFileDropDown);
   noFill();
   noStroke();
   
@@ -310,213 +335,178 @@ void draw(){
     dropDown1 = false;
     mouse2Pressed = true;
   }else{}
+  
+  if(e == 2 && f == 0){
+    slect[0] = true;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 2 && f == 1){
+    slect[0] = false;
+    slect[1] = true;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 3 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = true;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 4 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = true;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 5 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = true;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 6 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = true;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 7 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = true;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 8 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = true;
+    slect[8] = false;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 9 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = true;
+    slect[9] = false;
+    slect[10] = false;
+    slect[11] = false;
+  }else if(e == 10 && f == 0){
+    slect[0] = false;
+    slect[1] = false;
+    slect[2] = false;
+    slect[3] = false;
+    slect[4] = false;
+    slect[5] = false;
+    slect[6] = false;
+    slect[7] = false;
+    slect[8] = false;
+    slect[9] = true;
+    slect[10] = false;
+    slect[11] = false;
+  }
+    
 }
 
 void keyPressed(){
-  if(key == 'a' || key == 'A'){
-    if(dropDown1 == true){
-      dropDown1 = false;
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = false;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
-    }else{
-      dropDown1 = true;
+  if(keyCode == LEFT || keyCode == TOP || keyCode == RIGHT || keyCode == DOWN || keyCode == ENTER || key == 's' || key == 'S'){
+    if(key == 's' || key == 'S'){
+        e = 2;
+        f = 0;
     }
-  }
-  
-  if(dropDown1 == true && key == 'b' || key == 'B'){
-    if(battBool == true){
-      battBool = false;
-    }else{
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = true;
-      inverterBool = false;
-      DCDCBB = false;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
+    if(keyCode == LEFT){
+      f--;
     }
-  }
-  
-  if(battBool == true && key == '1'){
-    if(twelveVBatt == true){
-      twelveVBatt = false;
-    }else{
-      twelveVBatt = true;
-      fortyEaghtVBatt = false;
-      twentyFourVBatt = false;
+    if(keyCode == RIGHT){
+      f++;
     }
-  }
+    if(keyCode == ENTER){
+      if(e == 2){
+        if(dropDown1 == true){
+          dropDown1 = false;
+        }else{
+          dropDown1 = true;
+        }
+      }
+    }
+    if(keyCode == UP){
+      e--;
+    }
     
-  if(battBool == true && key == '4'){
-    if(fortyEaghtVBatt == true){
-      fortyEaghtVBatt = false;
-    }else{
-      twelveVBatt = false;
-      fortyEaghtVBatt = true;
-      twentyFourVBatt = false;
+    if(keyCode == DOWN && dropDown1 == true || fileDropDown == true){
+      e++;
+    }
+    
+    if(e == 1){
+      e = 2;
+    }
+    if(f == -1){
+      f = 0;
     }
   }
-  
-  if(battBool == true && key == '2'){
-    if(twentyFourVBatt == true){
-      twentyFourVBatt = false;
-    }else{
-      twentyFourVBatt = true;
-      twelveVBatt = false;
-      fortyEaghtVBatt = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 's' || key == 'S'){
-    if(solarPanBool == true){
-      solarPanBool = false;
-    }else{
-      combinerBoxes = false;
-      solarPanBool = true;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = false;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'i' || key == 'I'){
-    if(inverterBool == true){
-      inverterBool = false;
-    }else{
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = true;
-      DCDCBB = false;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
-    }
-  }
-  
-  if(inverterBool == true && key == '4'){
-    if(fortyEaghtVoltInverterBool == true){
-      fortyEaghtVoltInverterBool = false;
-    }else{
-      fortyEaghtVoltInverterBool = true;
-      twentyFourVoltInverterBool = false;
-      twelveVoltInverterBool = false;
-      gridTieInverteBool = false;
-    }
-  }
-  
-  if(inverterBool == true && key == '2'){
-    if(twentyFourVoltInverterBool == true){
-      twentyFourVoltInverterBool = false;
-    }else{
-      fortyEaghtVoltInverterBool = false;
-      twentyFourVoltInverterBool = true;
-      twelveVoltInverterBool = false;
-      gridTieInverteBool = false;
-    }
-  }
-  
-  if(inverterBool == true && key == '1'){
-    if(twelveVoltInverterBool == true){
-      twelveVoltInverterBool = false;
-    }else{
-      fortyEaghtVoltInverterBool = false;
-      twentyFourVoltInverterBool = false;
-      twelveVoltInverterBool = true;
-      gridTieInverteBool = false;
-    }
-  }
-  
-  if(inverterBool == true && key == 'g' || key == 'G'){
-    if(gridTieInverteBool == true){
-      gridTieInverteBool = false;
-    }else{
-      fortyEaghtVoltInverterBool = false;
-      twentyFourVoltInverterBool = false;
-      twelveVoltInverterBool = false;
-      gridTieInverteBool = true;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'c' || key == 'C'){
-    if(combinerBoxes == true){
-      combinerBoxes = false;
-    }else{
-      combinerBoxes = true;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = false;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'o' || key == 'O'){
-    if(CNC == true){
-      CNC = false;
-    }else{
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = false;
-      ESP = false;
-      CNC = true;
-      wireBool = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'd' || key == 'D'){
-    if(DCDCBB == true){
-      DCDCBB = false;
-    }else{
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = true;
-      ESP = false;
-      CNC = false;
-      wireBool = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'e' || key == 'E'){
-    if(ESP == true){
-      ESP = false;
-    }else{
-      ESP = true;
-      combinerBoxes = false;
-      solarPanBool = false;
-      battBool = false;
-      inverterBool = false;
-      DCDCBB = false;
-      CNC = false;
-      wireBool = false;
-    }
-  }
-  
-  if(dropDown1 == true && key == 'w' || key == 'W'){
-    if(wireBool == true){
-      wireBool = false;
-      togle = true;
-    }else{
-      wireBool = true;
-      togle = true;
-    }
-  }
+  println(e+" "+f);
 }
 
 void mousePressed(){
