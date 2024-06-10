@@ -32,27 +32,27 @@ void inveterSetup(){
   widthInverter[0] = 100;
   heightInverter[0] = 200;
   
-  xInverterVDD[0] = xInverter[0]+90;
+  xInverterVDD[0] = xInverter[0]+90-wireWidth/2;
   yInverterVDD[0] = yInverter[0]+heightInverter[0];
   widthInverterVDD[0] = wireWidth;
   heightInverterVDD[0] = 20;
   
-  xInverterVSS[0] = xInverter[0]+70;
+  xInverterVSS[0] = xInverter[0]+70-wireWidth/2;
   yInverterVSS[0] = yInverter[0]+heightInverter[0];
   widthInverterVSS[0] = wireWidth;
   heightInverterVSS[0] = 20;
   
-  xInverterLine1[0] = xInverter[0]+50;
+  xInverterLine1[0] = xInverter[0]+50-wireWidth/2;
   yInverterLine1[0] = yInverter[0]+heightInverter[0];
   widthInverterLine1[0] = wireWidth;
   heightInverterLine1[0] = 20;
   
-  xInverterNeutral[0] = xInverter[0]+30;
+  xInverterNeutral[0] = xInverter[0]+30-wireWidth/2;
   yInverterNeutral[0] = yInverter[0]+heightInverter[0];
   widthInverterNeutral[0] = wireWidth;
   heightInverterNeutral[0] = 20;
   
-  xInverterGround[0] = xInverter[0]+10;
+  xInverterGround[0] = xInverter[0]+10-wireWidth/2;
   yInverterGround[0] = yInverter[0]+heightInverter[0];
   widthInverterGround[0] = wireWidth;
   heightInverterGround[0] = 20;
