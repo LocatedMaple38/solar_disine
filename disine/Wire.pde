@@ -1,35 +1,39 @@
-void wireDraw(){
-  
+void wireDraw() {
+
   stroke(#ff0000);
   strokeWeight(wireWidth);
   fill(#ff0000);
-  if(wireBool == true){
+  if (wireBool == true) {
     line(mouseX1[wireInt-1], mouseY1[wireInt-1], xx, yx);
   }
-  line(xWire[a], yWire[a], widthWire[a], heightWire[a]);
+  for (int i = 0; i < wireInt; ) {
+    line(xWire[i], yWire[i], widthWire[i], heightWire[i]);
+
+    if (i == wireInt) {
+      i = 0;
+      continue;
+    } else {
+      i++;
+    }
+  }
   noFill();
   noStroke();
-  
-  if(a == wireInt-1){
-    a = 0;
-  }else{
-    a++;
-  }
   //println(wireInt-1);
 }
 
-void wireSetup(){
-  if(mouse1Pressed == true){
-    xWire[b] = mouseX1[b];
-    yWire[b] = mouseY1[b];
-    widthWire[b] = mouseX2[b];
-    heightWire[b] = mouseY2[b];
-    
-    if(b == wireInt-1){
-      b = 0;
+void wireSetup() {
+  for(int i = 0; i < wireInt-1; ){
+    if(mouse1Pressed == true){
+      xWire[i] = mouseX1[i];
+      yWire[i] = mouseY1[i];
+      widthWire[i] = mouseX2[i];
+      heightWire[i] = mouseY2[i];
+    }
+    if(i == wireInt-1){
+      i = 0;
+      continue;
     }else{
-      b++;
+      i++;
     }
   }
-  
 }
