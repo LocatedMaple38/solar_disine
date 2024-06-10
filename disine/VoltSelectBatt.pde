@@ -1,9 +1,22 @@
 void voltSelectBattDraw(){
   fill(255);
-  rect(x48VBatt, y48VBatt, width48VBatt, height48VBatt);
-  rect(x24VBatt, y24VBatt, width24VBatt, height24VBatt);
-  rect(x12VBatt, y12VBatt, width12VBatt, height12VBatt);
+  strokeWeight(1.5);
   
+  if(e == 3 && f == 1){
+    stroke(0);
+  }
+  rect(x48VBatt, y48VBatt, width48VBatt, height48VBatt);
+  noStroke();
+  if(e == 4 && f == 1){
+    stroke(0);
+  }
+  rect(x24VBatt, y24VBatt, width24VBatt, height24VBatt);
+  noStroke();
+  if(e == 5 && f == 1){
+    stroke(0);
+  }
+  rect(x12VBatt, y12VBatt, width12VBatt, height12VBatt);
+  noStroke();
   fill(0);
   textAlign(LEFT, TOP);
   textSize(15);
