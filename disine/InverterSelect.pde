@@ -1,9 +1,25 @@
 void inverterSelectDraw(){
   
   fill(255);
+  noStroke();
+  if(e == 5 && f == 1){
+    stroke(0);
+  }
   rect(x48VInverter, y48VInverter, width48VInverter, height48VInverter);
+  noStroke();
+  if(e == 6 && f == 1){
+    stroke(0);
+  }
   rect(x24VInverter, y24VInverter, width24VInverter, height24VInverter);
+  noStroke();
+  if(e == 7 && f == 1){
+    stroke(0);
+  }
   rect(x12VInverter, y12VInverter, width12VInverter, height12VInverter);
+  noStroke();
+  if(e == 8 && f == 1){
+    stroke(0);
+  }
   rect(xGridTie, yGridTie, widthGridTie, heightGridTie);
   
   fill(0);
