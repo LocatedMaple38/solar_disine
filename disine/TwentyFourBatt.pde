@@ -42,9 +42,4 @@ void twentyFourVoltBattSetup(){
   y24VBatt5 = 120;
   widht24V5 = 425;
   height24VBatt5 = 20;
-  
-  x24VInverter4 = 275;
-  y24VInverter4 = 240;
-  width24VInverter4 = 425;
-  height24VInverter4 = 20;
 }
