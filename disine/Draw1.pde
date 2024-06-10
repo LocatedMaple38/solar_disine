@@ -1,12 +1,52 @@
 void draw1(){
   fill(255);
+  noStroke();
+  
+  if(slect[2] == true){
+    stroke(0);
+  }
   rect(xBattteries, yBattteries, widthBattteries, heightBattteries);
+  noStroke();
+  
+  if(slect[3] == true){
+    stroke(0);
+  }
   rect(xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan);
+  noStroke();
+  
+  if(slect[4] == true){
+    stroke(0);
+  }
   rect(xAddInveter, yAddInverter, widthAddInverter, heightAddIverter);
+  noStroke();
+  
+  if(slect[5] == true){
+    stroke(0);
+  }
   rect(xAddCB, yAddCB, widthAddCB, heightAddCB);
+  
+  noStroke();
+  if(slect[6] == true){
+    stroke(0);
+  }
   rect(xAddCNC, yAddCNC, widthAddCNC, heightAddCNC);
+  
+  noStroke();
+  if(slect[7] == true){
+    stroke(0);
+  }
   rect(xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
+  
+  noStroke();
+  if(slect[8] == true){
+    stroke(0);
+  }
   rect(xAddESP, yAddESP, widthAddESP, heightAddESP);
+  
+  noStroke();
+  if(slect[9] == true){
+    stroke(0);
+  }
   rect(xAddWire, yAddWire, widthAddWire, heightAddWire);
   
   textAlign(LEFT, TOP);
@@ -20,17 +60,6 @@ void draw1(){
   text("DC Distribution Bars / Blocks", xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
   text("Electrical Panels & Subpanels", xAddESP, yAddESP, widthAddESP, heightAddESP);
   text("Wire", xAddWire, yAddWire, widthAddWire, heightAddWire);
-  stroke(0);
-  fill(0);
-  strokeWeight(1);
-  line(0, 36, 0+textWidth("B"), 36);
-  line(0, 56, 0+textWidth("S"), 56);
-  line(0, 76, 0+textWidth("I"), 76);
-  line(0, 96, 0+textWidth("C"), 96);
-  line(textWidth("C"), 116, textWidth("C")+textWidth("o"), 116);
-  line(0, 136, 0+textWidth("D"), 136);
-  line(0, 156, 0+textWidth("E"), 156);
-  line(0, 176, 0+textWidth("W"), 176);
   noStroke();
   noFill();
   
