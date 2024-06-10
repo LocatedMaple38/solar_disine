@@ -2,15 +2,15 @@ int wireWidth = 5;
 int appWidth, appHeight;
 int mousePressedINT = 2;
 boolean mouse1Pressed = true, mouse2Pressed = false;
+String path;
+int gridSpace = 10;
 
 boolean scrollUP = false;
 float xVCursor, yVCursor, widthVCursor, heightVCursor;
 float xHCursor, yHCursor, widthHCursor, heightHCursor;
 
-boolean VDD = true;
+boolean VDD = false;
 boolean VSS = false;
-boolean L1 = false;
-boolean L2 = false;
 boolean ground = false;
 boolean com = false;
 boolean twelveVBatt = false;
@@ -44,7 +44,6 @@ float x24VInverter1, y24VInverter1, width24VInverter1, height24VInverter1;
 float x24VInverter2, y24VInverter2, width24VInverter2, height24VInverter2;
 float x24VInverter3, y24VInverter3, width24VInverter3, height24VInverter3;
 float x24VInverter4, y24VInverter4, width24VInverter4, height24VInverter4;
-float x24VInverter5, y24VInverter5, width24VInverter5, height24VInverter5;
 
 float x48VInverter1, y48VInverter1, width48VInverter1, height48VInverter1;
 float x48VInverter2, y48VInverter2, width48VInverter2, height48VInverter2;
@@ -157,7 +156,9 @@ boolean dropDown1 = false;
 
 float xFileDropDown, yFileDropDown, widthFileDropDown, heightFileDropDown;
 float xFileSave, yFileSave, widthFileSave, heightFileSave;
-float xFileSaveAs, yFileSaveAs, widthFileSaveAs, heightFaileSaveAs;
+float xFileAutoSave, yFileAutoSave, widthFileAutoSave, heightFileAutoSave;
+float xFileLoad, yFileLoad, widthFileLoad, heightFileLoad;
+float xGridSize, yGridSize, widthGridSize, heightGridSize;
 boolean fileDropDown = false;
 
 //Solar Panel
@@ -191,31 +192,25 @@ float[] xInverterGround = new float[inverterInt], yInverterGround = new float[in
 //wire
 int wireInt = 1;
 boolean wireBool = false;
-boolean wireCursorFree = true;
-boolean end = false;
 float[] xWire = new float[wireInt], yWire = new float[wireInt], widthWire = new float[wireInt], heightWire = new float[wireInt];
 int[] mouseX1 = new int[wireInt], mouseY1 = new int[wireInt], mouseX2 = new int[wireInt], mouseY2 = new int[wireInt];
 
 //grid
-int gridLnY = 100;
-int gridLnX = 100;
-float[] xGridln = new float[gridLnX], yGridln = new float[gridLnX], widthGridln = new float[gridLnX], heightGridln = new float[gridLnX];
+int gridLn = 10000;
+float[] xGridlnX = new float[gridLn], yGridlnX = new float[gridLn], widthGridlnX = new float[gridLn], heightGridlnX = new float[gridLn];
+float[] xGridlnY = new float[gridLn], yGridlnY = new float[gridLn], widthGridlnY = new float[gridLn], heightGridlnY = new float[gridLn];
 
 String path1 = "save.txt";
 String[] lines1;
 
-int a = 0;
-int b = 0;
-int c = 0;
-int d = 0;
 int e = 0;
 int f = 0;
 
 float xx, yx, widthx, heightx;
 
-boolean[] slect = new boolean[12];
-
 void setup(){
+  line1[0] = true;
+  line2[0] = false;
   lines1 = loadStrings(path1);
   
   surface.setResizable(true);
@@ -253,15 +248,33 @@ void setup(){
   solarPanItemSetup();
   twentyFourVoltBattSetup();
   fileDropDownSetup();
+  frameRate(30);
   
+  for(int i = 1; i < gridLn;){
+    xGridlnX[i] = 0;
+    yGridlnX[i] = gridSpace*i;
+    widthGridlnX[i] = 100*100;
+    heightGridlnX[i] = gridSpace*i;
+    
+    xGridlnY[i] = gridSpace*i;
+    yGridlnY[i] = 0;
+    widthGridlnY[i] = gridSpace*i;
+    heightGridlnY[i] = 100*100;
+    
+    if(i == gridLn){
+      continue;
+    }else{
+      i++;
+    }
+  }
 }
 
 void settings(){
   size(500, 500);
-  //fullScreen(SPAN);
 }
 
 void draw(){  
+  
   solarPanSetup();
   battSetup();
   inveterSetup();
@@ -295,10 +308,11 @@ void draw(){
   inverterMoveX[0] = 100;
   inverterMoveY[0] = 0;
   
-  wireDraw();
+  gridDraw();
   battDraw();
   inverterDraw();
   solarPanDraw();
+  wireDraw();
   
   if(dropDown1 == true){
     draw1();
@@ -311,15 +325,14 @@ void draw(){
   textSize(15);
   fill(#ffffff);
   noStroke();
-  if(slect[0] == true){
+  strokeWeight(1);
+  if(e == 2 && f == 0){
     stroke(0);
-    strokeWeight(5);
   }
   rect(xDropDown, yDropDown, widthDropDown, heightDropDown);
   noStroke();
-  if(slect[1] == true){
+  if(e == 2 && f == 1){
     stroke(0);
-    strokeWeight(5);
   }
   rect(xFileDropDown, yFileDropDown, widthFileDropDown, heightFileDropDown);
   noStroke();
@@ -334,144 +347,12 @@ void draw(){
     togle = false;
     dropDown1 = false;
     mouse2Pressed = true;
-  }else{}
-  
-  if(e == 2 && f == 0){
-    slect[0] = true;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 2 && f == 1){
-    slect[0] = false;
-    slect[1] = true;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 3 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = true;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 4 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = true;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 5 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = true;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 6 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = true;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 7 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = true;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 8 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = true;
-    slect[8] = false;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 9 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = true;
-    slect[9] = false;
-    slect[10] = false;
-    slect[11] = false;
-  }else if(e == 10 && f == 0){
-    slect[0] = false;
-    slect[1] = false;
-    slect[2] = false;
-    slect[3] = false;
-    slect[4] = false;
-    slect[5] = false;
-    slect[6] = false;
-    slect[7] = false;
-    slect[8] = false;
-    slect[9] = true;
-    slect[10] = false;
-    slect[11] = false;
   }
-    
 }
 
 void keyPressed(){
-  if(keyCode == LEFT || keyCode == TOP || keyCode == RIGHT || keyCode == DOWN || keyCode == ENTER || key == 's' || key == 'S'){
+  //println(path);
+  if(key == CODED && keyCode == LEFT || keyCode == UP || keyCode == RIGHT || keyCode == DOWN || keyCode == ENTER || key == 's' || key == 'S'){
     if(key == 's' || key == 'S'){
         e = 2;
         f = 0;
@@ -482,22 +363,265 @@ void keyPressed(){
     if(keyCode == RIGHT){
       f++;
     }
-    if(keyCode == ENTER){
-      if(e == 2){
-        if(dropDown1 == true){
-          dropDown1 = false;
-        }else{
-          dropDown1 = true;
-        }
+    if(dropDown1 == true || fileDropDown == true){
+      if(keyCode == DOWN){
+        e++;
+      }else if(keyCode == UP){
+        e--;
       }
     }
-    if(keyCode == UP){
-      e--;
+      
+    
+    if(keyCode == ENTER){
+      if(e == 2 && f == 0){
+        if(dropDown1 == true){
+          dropDown1 = false;
+          solarPanBool = false;
+          battBool = false;
+          inverterBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = false;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }else{
+          dropDown1 = true;
+          fileDropDown = false;
+        }
+      }
+        
+      if(e == 3 && f == 0 && dropDown1 == true){
+        if(battBool == true){
+          battBool = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+          twelveVBatt = false;
+        }else{
+          battBool = true;
+        }
+      }
+      
+      if(e == 3 && f == 1 && battBool == true){
+        if(fortyEaghtVBatt == true){
+          fortyEaghtVBatt = false;
+        }else{
+          fortyEaghtVBatt = true;
+          twentyFourVBatt = false;
+          twelveVBatt = false;
+        }
+      }
+      
+      if(e == 4 && f == 1 && battBool == true){
+        if(twentyFourVBatt == true){
+          twentyFourVBatt = false;
+        }else{
+          twentyFourVBatt = true;
+          fortyEaghtVBatt = false;
+          twelveVBatt = false;
+        }
+      }
+      
+      if(e == 5 && f == 1 && battBool == true){
+        if(twelveVBatt == true){
+          twelveVBatt = false;
+        }else{
+          twelveVBatt = true;
+          twentyFourVBatt = false;
+          fortyEaghtVBatt = false;
+        }
+      }
+      
+      if(e == 4 && f == 0 && dropDown1 == true){
+        if(solarPanBool == true){
+          solarPanBool = false;
+        }else{
+          solarPanBool = true;
+          battBool = false;
+          inverterBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = false;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 5 && f == 0 && dropDown1 == true){
+        if(inverterBool == true){
+          inverterBool = false;
+        }else{
+          inverterBool = true;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = false;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 7 && f == 1 && inverterBool == true){
+        if(twelveVoltInverterBool == true){
+          twelveVoltInverterBool = false;
+        }else{
+          twelveVoltInverterBool = true;
+          twentyFourVoltInverterBool = false;
+          fortyEaghtVoltInverterBool = false;
+          gridTieInverteBool = false;
+        }
+      }
+      
+      if(e == 6 && f == 1 && inverterBool == true){
+        if(twentyFourVoltInverterBool == true){
+          twentyFourVoltInverterBool = false;
+        }else{
+          twelveVoltInverterBool = false;
+          twentyFourVoltInverterBool = true;
+          fortyEaghtVoltInverterBool = false;
+          gridTieInverteBool = false;
+        }
+      }
+      
+      if(e == 5 && f == 1 && inverterBool == true){
+        if(fortyEaghtVoltInverterBool == true){
+          fortyEaghtVoltInverterBool = false;
+        }else{
+          twelveVoltInverterBool = false;
+          twentyFourVoltInverterBool = false;
+          fortyEaghtVoltInverterBool = true;
+          gridTieInverteBool = false;
+        }
+      }
+      
+      if(e == 8 && f == 1 && inverterBool == true){
+        if(gridTieInverteBool == true){
+          gridTieInverteBool = false;
+        }else{
+          twelveVoltInverterBool = false;
+          twentyFourVoltInverterBool = false;
+          fortyEaghtVoltInverterBool = false;
+          gridTieInverteBool = true;
+        }
+      }
+      
+      if(e == 2 && f == 1 && dropDown1 == false){
+        if(fileDropDown == true){
+          fileDropDown = false;
+        }else{
+          fileDropDown = true;
+          dropDown1 = false;
+        }
+      }
+      
+      if(e == 6 && f == 0 && dropDown1 == true){
+        if(combinerBoxes == true){
+          combinerBoxes = false;
+        }else{
+          inverterBool = false;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = true;
+          DCDCBB = false;
+          ESP = false;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 7 && f == 0 & dropDown1 == true){
+        if(CNC == true){
+          CNC = false;
+        }else{
+          inverterBool = false;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = false;
+          CNC = true;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 8 && f == 0 & dropDown1 == true){
+        if(DCDCBB == true){
+          DCDCBB = false;
+        }else{
+          inverterBool = false;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = false;
+          DCDCBB = true;
+          ESP = false;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 9 && f == 0 & dropDown1 == true){
+        if(ESP == true){
+          ESP = false;
+        }else{
+          inverterBool = false;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = true;
+          CNC = false;
+          wireBool = false;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 9 && f == 0 & dropDown1 == true){
+        if(wireBool == true){
+          wireBool = false;
+        }else{
+          inverterBool = false;
+          solarPanBool = false;
+          battBool = false;
+          combinerBoxes = false;
+          DCDCBB = false;
+          ESP = false;
+          CNC = false;
+          wireBool = true;
+          twelveVBatt = false;
+          fortyEaghtVBatt = false;
+          twentyFourVBatt = false;
+        }
+      }
+      
+      if(e == 3 && f == 1 && fileDropDown == true){
+        fileSave();
+      }
+      
+      if(e == 5 && f == 1 && fileDropDown == true){
+        fileLoad();
+      }
     }
     
-    if(keyCode == DOWN && dropDown1 == true || fileDropDown == true){
-      e++;
-    }
     
     if(e == 1){
       e = 2;
@@ -506,7 +630,9 @@ void keyPressed(){
       f = 0;
     }
   }
-  println(e+" "+f);
+  //println(e+" "+f);
+  //println(keyCode+" "+key);
+  
 }
 
 void mousePressed(){
@@ -522,6 +648,9 @@ void mousePressed(){
       ESP = false;
       CNC = false;
       wireBool = false;
+      twelveVBatt = false;
+      fortyEaghtVBatt = false;
+      twentyFourVBatt = false;
     }else{
       dropDown1 = true;
     }
@@ -648,9 +777,6 @@ void mousePressed(){
       twelveVBatt = true;
       fortyEaghtVBatt = false;
       twentyFourVBatt = false;
-      twelveVBatt = false;
-      fortyEaghtVBatt = false;
-      twentyFourVBatt = false;
     }
   }
     
@@ -745,7 +871,6 @@ void mousePressed(){
       mouse1Pressed = true;
       wireInt++;
     }
-    //println(mouse1Pressed);
   }
   //println(mouseX, mouseY);
 }
