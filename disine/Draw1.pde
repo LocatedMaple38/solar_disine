@@ -2,49 +2,49 @@ void draw1(){
   fill(255);
   noStroke();
   
-  if(slect[2] == true){
+  if(e == 3 && f == 0){
     stroke(0);
   }
   rect(xBattteries, yBattteries, widthBattteries, heightBattteries);
   noStroke();
   
-  if(slect[3] == true){
+  if(e == 4 && f == 0){
     stroke(0);
   }
   rect(xAddSolarPan, yAddSolarPan, widthAddSolarPan, heightAddSolarPan);
   noStroke();
   
-  if(slect[4] == true){
+  if(e == 5 && f == 0){
     stroke(0);
   }
   rect(xAddInveter, yAddInverter, widthAddInverter, heightAddIverter);
   noStroke();
   
-  if(slect[5] == true){
+  if(e == 6 && f == 0){
     stroke(0);
   }
   rect(xAddCB, yAddCB, widthAddCB, heightAddCB);
   
   noStroke();
-  if(slect[6] == true){
+  if(e == 7 && f == 0){
     stroke(0);
   }
   rect(xAddCNC, yAddCNC, widthAddCNC, heightAddCNC);
   
   noStroke();
-  if(slect[7] == true){
+  if(e == 8 && f == 0){
     stroke(0);
   }
   rect(xAddDCDCBB, yAddDCDCBB, widthAddDCDCBB, heightAddDCDCBB);
   
   noStroke();
-  if(slect[8] == true){
+  if(e == 9 && f == 0){
     stroke(0);
   }
   rect(xAddESP, yAddESP, widthAddESP, heightAddESP);
   
   noStroke();
-  if(slect[9] == true){
+  if(e == 10 && f == 0){
     stroke(0);
   }
   rect(xAddWire, yAddWire, widthAddWire, heightAddWire);
