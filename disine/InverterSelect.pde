@@ -11,13 +11,6 @@ void inverterSelectDraw(){
   text("24V", x24VInverter, y24VInverter, width24VInverter, height24VInverter);
   text("12V", x12VInverter, y12VInverter, width12VInverter, height12VInverter);
   text("Grid Tie", xGridTie, yGridTie, widthGridTie, heightGridTie);
-  
-  stroke(0);
-  fill(0);
-  line(225, 76, 225+textWidth("4"), 76);
-  line(225, 96, 225+textWidth("2"), 96);
-  line(225, 116, 225+textWidth("1"), 116);
-  line(225, 136, 225+textWidth("4"), 136);
   noStroke();
   noFill();
   
