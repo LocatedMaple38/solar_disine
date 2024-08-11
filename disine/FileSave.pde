@@ -66,5 +66,6 @@ void fileSelected(File selection){
   }else{
     println("User selected " + selection.getAbsolutePath());
   }
-  path = selection.getAbsolutePath();
+  path = relativePath(selection.getAbsolutePath());
+  println(path);
 }
